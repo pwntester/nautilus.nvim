@@ -1,0 +1,410 @@
+local Color, c, Group, l, s = require("colorbuddy").setup()
+-- local n = s.inverse
+-- local ul = s.underline
+-- local r = s.reverse
+-- local sto = s.standout
+
+--[[
+    base00 - Default Background
+    base01 - Lighter Background (Used for status bars)
+    base02 - Selection Background
+    base03 - Comments, Invisibles, Line Highlighting
+    base04 - Dark Foreground (Used for status bars)
+    base05 - Default Foreground, Caret, Delimiters, Operators
+    base06 - Light Foreground (Not often used)
+    base07 - Light Background (Not often used)
+    base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+    base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url
+    base0A - Classes, Markup Bold, Search Text Background
+    base0B - Strings, Inherited Class, Markup Code, Diff Inserted
+    base0C - Support, Regular Expressions, Escape Characters, Markup Quotes
+    base0D - Functions, Methods, Attribute IDs, Headings
+    base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed
+    base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+
+    Alphas are Pantone 534 C = #1B365D
+    Alphas legends are TU2 = #00a4a9
+    Modifiers are Pantone 533 C = #1F2A44
+    Modifiers legends are GMK N6 = #e5a100
+    Alternate modifiers are GMK N6 = #e5a100
+    Alternate modifiers legends are Pantone 533 C = #1F2A44
+
+    Cello #23395b
+    Java #02b3af
+    Orient #005880
+    Supernova #fbca00
+]]--
+
+vim.cmd [[ hi! clear ]]
+
+Color.new('base00', '#0b1f41')
+Color.new('base01', '#11305f')
+Color.new('base02', '#3a5488')
+Color.new('base03', '#80b2d6')
+Color.new('base04', '#3aa3e9')
+Color.new('base05', '#abb2bf')
+Color.new('base06', '#b6bdca')
+Color.new('base07', '#c8ccd4')
+Color.new('base08', '#f04c75')
+Color.new('base09', '#ffae57')
+Color.new('base0A', '#ffcc66')
+Color.new('base0B', '#98c379')
+Color.new('base0C', '#56b6c2')
+Color.new('base0D', '#01bfef')
+Color.new('base0E', '#c678dd')
+Color.new('base0F', '#be5046')
+Color.new('base10', '#213554')
+
+vim.g.terminal_color_0 =  c.base00:to_rgb()
+vim.g.terminal_color_1 =  c.base08:to_rgb()
+vim.g.terminal_color_2 =  c.base0B:to_rgb()
+vim.g.terminal_color_3 =  c.base0A:to_rgb()
+vim.g.terminal_color_4 =  c.base0D:to_rgb()
+vim.g.terminal_color_5 =  c.base0E:to_rgb()
+vim.g.terminal_color_6 =  c.base0C:to_rgb()
+vim.g.terminal_color_7 =  c.base05:to_rgb()
+vim.g.terminal_color_8 =  c.base03:to_rgb()
+vim.g.terminal_color_9 =  c.base08:to_rgb()
+vim.g.terminal_color_10 = c.base0B:to_rgb()
+vim.g.terminal_color_11 = c.base0A:to_rgb()
+vim.g.terminal_color_12 = c.base0D:to_rgb()
+vim.g.terminal_color_13 = c.base0E:to_rgb()
+vim.g.terminal_color_14 = c.base0C:to_rgb()
+vim.g.terminal_color_15 = c.base07:to_rgb()
+vim.g.terminal_color_background = c.base00:to_rgb()
+vim.g.terminal_color_foreground = c.base0E:to_rgb()
+
+-- Vim editor colors
+Group.new("Normal", c.base05, c.base00)
+Group.new('NormalFloat', c.base05, c.base01)
+Group.new("Bold", c.none, c.none, s.bold)
+Group.new("Debug", c.base08, c.none)
+Group.new("Directory", c.base0D, c.none)
+Group.new("Error", c.base01, c.base08)
+Group.new("ErrorMsg", c.base08, c.none)
+Group.new("Exception", c.base08, c.none)
+Group.new("FoldColumn", c.base0C, c.base01)
+Group.new("Folded", c.base03, c.base01)
+Group.new("Italic", c.none, c.none, s.italic)
+Group.new("Macro", c.base08, c.none)
+Group.new("ModeMsg", c.base0B, c.none)
+Group.new("MoreMsg", c.base0B, c.none)
+Group.new("Question", c.base0D, c.none)
+Group.new('Search', c.base00, c.base04)
+Group.new('IncSearch', c.base00, c.base09)
+Group.new("Substitute", c.base01, c.base0A)
+Group.new("SpecialKey", c.base03, c.none)
+Group.new("TooLong", c.base08, c.none)
+Group.new("Underlined", c.base08, c.none)
+Group.new("Visual", c.none, c.base02)
+Group.new("VisualNOS", c.base08, c.none)
+Group.new("WarningMsg", c.base08, c.none)
+Group.new("WildMenu", c.base08, c.base0A)
+Group.new("Title", c.base0D, c.none)
+Group.new("Conceal", c.base0D, c.none)
+Group.new("Cursor", c.base00, c.base05)
+Group.new("NonText", c.base03, c.none)
+Group.new('LineNr', c.base02, c.base00)
+Group.new('LineNrNC', c.base02, c.base01)
+Group.new('SignColumn', c.base01, c.none)
+Group.new('StatusLine', c.base02, c.base01)
+Group.new('StatusLineNC', c.base02, c.base01)
+Group.new('VertSplit', c.base02, c.base00)
+Group.new('ColorColumn', c.base01, c.base01)
+Group.new("CursorColumn", c.none, c.base01)
+Group.new("CursorLine", c.none, c.base01)
+Group.new('CursorLineNr', c.base0A, c.base00)
+Group.new("QuickFixLine", c.none, c.base01)
+Group.new("PMenu", c.base05, c.base01)
+Group.new("PMenuSel", c.base01, c.base05)
+Group.new('TabLineSel', c.base00, c.base0A)
+Group.new('TabLine', c.base03, c.base00)
+Group.new('TabLineFill', c.base03, c.base00)
+Group.new('EndOfBuffer', c.base01, c.base00)
+
+
+-- Standard syntax highlighting
+Group.new("Boolean", c.base09, c.none)
+Group.new("Character", c.base08, c.none)
+Group.new("Comment", c.base03, c.none)
+Group.new("Conditional", c.base0E, c.none)
+Group.new("Constant", c.base09, c.none)
+Group.new("Define", c.base0E, c.none)
+Group.new("Delimiter", c.base0F, c.none)
+Group.new("Float", c.base09, c.none)
+Group.new("Function", c.base0D, c.none)
+Group.new("Identifier", c.base0A, c.none)
+Group.new("Include", c.base0D, c.none)
+Group.new("Keyword", c.base0E, c.none)
+Group.new("Label", c.base0A, c.none)
+Group.new("Number", c.base03, c.none)
+Group.new('Operator', c.base03, c.none)
+Group.new("PreProc", c.base0A, c.none)
+Group.new("Repeat", c.base0A, c.none)
+Group.new("Special", c.base0C, c.none)
+Group.new("SpecialChar", c.base0F, c.none)
+Group.new("Statement", c.base08, c.none)
+Group.new("StorageClass", c.base0A, c.none)
+Group.new("String", c.base0B, c.none)
+Group.new("Structure", c.base0E, c.none)
+Group.new("Tag", c.base0A, c.none)
+Group.new("Todo", c.base0A, c.base01)
+Group.new("Type", c.base0A, c.none)
+Group.new("Typedef", c.base0A, c.none)
+
+---
+-- Extra definitions
+---
+
+-- Help
+Group.new('HelpDoc', c.base05, c.base0D, s.bold + s.italic)
+Group.new('HelpIgnore', c.base0B, nil, s.bold + s.italic)
+
+-- C highlighting
+Group.new("cOperator", c.base0C, c.none)
+Group.new("cPreCondit", c.base0E, c.none)
+
+-- C# highlighting
+Group.new("csClass", c.base0A, c.none)
+Group.new("csAttribute", c.base0A, c.none)
+Group.new("csModifier", c.base0E, c.none)
+Group.new("csType", c.base08, c.none)
+Group.new("csUnspecifiedStatement", c.base0D, c.none)
+Group.new("csContextualStatement", c.base0E, c.none)
+Group.new("csNewDecleration", c.base08, c.none)
+
+-- CSS highlighting
+Group.new("cssBraces", c.base05, c.none)
+Group.new("cssClassName", c.base0E, c.none)
+Group.new("cssColor", c.base0C, c.none)
+
+-- Diff highlighting
+Group.new("DiffAdd", c.base0B, c.none)
+Group.new("DiffChange", c.base03, c.none)
+Group.new("DiffDelete", c.base08, c.none)
+Group.new("DiffText", c.base0D, c.none)
+Group.new("DiffAdded", c.base0B, c.none)
+Group.new("DiffFile", c.base08, c.none)
+Group.new("DiffNewFile", c.base0B, c.none)
+Group.new("DiffLine", c.base0D, c.none)
+Group.new("DiffRemoved", c.base08, c.none)
+
+-- Git highlighting
+Group.new("gitcommitOverflow", c.base08, c.none)
+Group.new("gitcommitSummary", c.base0B, c.none)
+Group.new("gitcommitComment", c.base03, c.none)
+Group.new("gitcommitUntracked", c.base03, c.none)
+Group.new("gitcommitDiscarded", c.base03, c.none)
+Group.new("gitcommitSelected", c.base03, c.none)
+Group.new("gitcommitHeader", c.base0E, c.none)
+Group.new("gitcommitSelectedType", c.base0D, c.none)
+Group.new("gitcommitUnmergedType", c.base0D, c.none)
+Group.new("gitcommitDiscardedType", c.base0D, c.none)
+Group.new("gitcommitBranch", c.base09, c.none, s.bold)
+Group.new("gitcommitUntrackedFile", c.base0A, c.none)
+Group.new("gitcommitUnmergedFile", c.base08, c.none, s.bold)
+Group.new("gitcommitDiscardedFile", c.base08, c.none, s.bold)
+Group.new("gitcommitSelectedFile", c.base0B, c.none, s.bold)
+
+-- GitGutter highlighting
+Group.new("GitGutterAdd", c.base0B, c.base01)
+Group.new("GitGutterChange", c.base0D, c.base01)
+Group.new("GitGutterDelete", c.base08, c.base01)
+Group.new("GitGutterChangeDelete", c.base0E, c.base01)
+
+-- HTML highlighting
+Group.new("htmlBold", c.base0A, c.none)
+Group.new("htmlItalic", c.base0E, c.none)
+Group.new("htmlEndTag", c.base05, c.none)
+Group.new("htmlTag", c.base05, c.none)
+
+-- JavaScript highlighting
+Group.new("javaScript", c.base05, c.none)
+Group.new("javaScriptBraces", c.base05, c.none)
+Group.new("javaScriptNumber", c.base09, c.none)
+
+-- pangloss/vim-javascript highlighting
+Group.new("jsOperator", c.base0D, c.none)
+Group.new("jsStatement", c.base0E, c.none)
+Group.new("jsReturn", c.base0E, c.none)
+Group.new("jsThis", c.base08, c.none)
+Group.new("jsClassDefinition", c.base0A, c.none)
+Group.new("jsFunction", c.base0E, c.none)
+Group.new("jsFuncName", c.base0D, c.none)
+Group.new("jsFuncCall", c.base0D, c.none)
+Group.new("jsClassFuncName", c.base0D, c.none)
+Group.new("jsClassMethodType", c.base0E, c.none)
+Group.new("jsRegexpString", c.base0C, c.none)
+Group.new("jsGlobalObjects", c.base0A, c.none)
+Group.new("jsGlobalNodeObjects", c.base0A, c.none)
+Group.new("jsExceptions", c.base0A, c.none)
+Group.new("jsBuiltins", c.base0A, c.none)
+
+-- Mail highlighting
+Group.new("mailQuoted1", c.base0A, c.none)
+Group.new("mailQuoted2", c.base0B, c.none)
+Group.new("mailQuoted3", c.base0E, c.none)
+Group.new("mailQuoted4", c.base0C, c.none)
+Group.new("mailQuoted5", c.base0D, c.none)
+Group.new("mailQuoted6", c.base0A, c.none)
+Group.new("mailURL", c.base0D, c.none)
+Group.new("mailEmail", c.base0D, c.none)
+
+-- Markdown highlighting
+Group.new("markdownh1", c.base0D, c.none, s.bold)
+Group.new("markdownh2", c.base0D, c.none, s.bold)
+Group.new("markdownh3", c.base0D, c.none, s.bold)
+Group.new("markdownh4", c.base0D, c.none, s.bold)
+Group.new("markdownh5", c.base0D, c.none, s.bold)
+Group.new("markdownh6", c.base0A, c.none, s.bold)
+Group.new("markdownRule", l.markdownH2, c.none, s.bold)
+Group.new("markdownItalic", c.base05, c.none, s.italic)
+Group.new("markdownBold", c.base05, c.none, s.bold)
+Group.new("markdownBoldItalic", c.base05, c.none, s.bold + s.italic)
+Group.new("markdownCodeDelimiter", c.base0B, c.none, s.bold)
+Group.new("markdownCode", c.base07, c.base10, s.none)
+Group.new("markdownCodeBlock", c.base0B, c.none)
+Group.new("markdownFootnoteDefinition", c.base05, c.none, s.italic)
+Group.new("markdownListMarker", c.base05, c.none, s.bold)
+Group.new("markdownLineBreak", c.base08, c.none, s.underline)
+Group.new("markdownError", c.base05, c.base00)
+Group.new("markdownHeadingDelimiter", c.base0D, c.none)
+Group.new("markdownUrl", c.base09, c.none, s.none)
+Group.new("markdownFootnote", c.base0E, c.none, s.italic)
+Group.new("markdownBlockquote", c.base0C, c.none, s.bold)
+Group.new("markdownLinkText", c.base08, c.none, s.italic)
+
+-- NERDTree highlighting
+Group.new("NERDTreeDirSlash", c.base0D, c.none)
+Group.new("NERDTreeExecFile", c.base05, c.none)
+
+-- PHP highlighting
+Group.new("phpMemberSelector", c.base05, c.none)
+Group.new("phpComparison", c.base05, c.none)
+Group.new("phpParent", c.base05, c.none)
+Group.new("phpMethodsVar", c.base0C, c.none)
+
+-- Python highlighting
+Group.new("pythonOperator", c.base0E, c.none)
+Group.new("pythonRepeat", c.base0E, c.none)
+Group.new("pythonInclude", c.base0E, c.none)
+Group.new("pythonStatement", c.base0E, c.none)
+
+-- Ruby highlighting
+Group.new("rubyAttribute", c.base0D, c.none)
+Group.new("rubyConstant", c.base0A, c.none)
+Group.new("rubyInterpolationDelimiter", c.base0F, c.none)
+Group.new("rubyRegexp", c.base0C, c.none)
+Group.new("rubySymbol", c.base0B, c.none)
+Group.new("rubyStringDelimiter", c.base0B, c.none)
+
+-- SASS highlighting
+Group.new("sassidChar", c.base08, c.none)
+Group.new("sassClassChar", c.base09, c.none)
+Group.new("sassInclude", c.base0E, c.none)
+Group.new("sassMixing", c.base0E, c.none)
+Group.new("sassMixinName", c.base0D, c.none)
+
+-- Signify highlighting
+-- Group.new('SignifySignAdd', c.base0B, c.base00)
+-- Group.new('SignifySignChange', c.base03, c.base00)
+-- Group.new('SignifySignDelete', c.base08, c.base00)
+
+-- Spelling highlighting
+Group.new("SpellBad", nil, c.none, s.undercurl) --, c.base08)
+Group.new("SpellLocal", nil, c.none, s.undercurl) --, c.base0C)
+Group.new("SpellCap", nil, c.none, s.undercurl) --, c.base0D)
+Group.new("SpellRare", nil, c.none, s.undercurl) --, c.base0E)
+
+-- Startify highlighting
+Group.new("StartifyBracket", c.base03, c.none)
+Group.new("StartifyFile", c.base07, c.none)
+Group.new("StartifyFooter", c.base03, c.none)
+Group.new("StartifyHeader", c.base0B, c.none)
+Group.new("StartifyNumber", c.base09, c.none)
+Group.new("StartifyPath", c.base03, c.none)
+Group.new("StartifySection", c.base0E, c.none)
+Group.new("StartifySelect", c.base0C, c.none)
+Group.new("StartifySlash", c.base03, c.none)
+Group.new("StartifySpecial", c.base03, c.none)
+
+-- Java highlighting
+Group.new("javaOperator", c.base0D, c.none)
+
+-- Vim
+-- Group.new('vimCommand', c.hue_3,  c.none)
+-- Group.new('vimCommentTitle', c.mono_3, c.none, s.bold)
+-- Group.new('vimFunction', l.Function,  c.none)
+-- Group.new('vimFuncName', c.hue_3,  c.none)
+-- Group.new('vimHighlight', c.hue_2,  c.none)
+-- Group.new('vimLineComment', c.mono_3, c.none, s.italic)
+-- Group.new('vimParenSep', c.mono_2, c.none)
+-- Group.new('vimSep', c.mono_2, c.none)
+-- Group.new('vimUserFunc', c.hue_1,  c.none)
+-- Group.new('vimUserCommand', c.hue_1,  c.none)
+-- Group.new('vimVar', c.hue_5,  c.none)
+
+-- Telescope highlighting
+Group.new('TelescopeNormal', c.base05, c.base01)
+Group.new('TelescopeBorder', c.base00, c.base01)
+Group.new('TelescopePromptPrefix', c.base0A, c.base01)
+Group.new('TelescopeMatching', c.base0D, c.base01)
+Group.new('TelescopeSelection', c.base0A, c.base01)
+Group.new('TelescopeSelectionCaret', c.base0A, c.base01)
+
+--LSP highlighting
+Group.new('LspDiagnosticsDefaultError', c.base08, c.none)
+Group.new('LspDiagnosticsDefaultWarning', c.base09, c.none)
+Group.new('LspDiagnosticsDefaultHint', c.base0A, c.none)
+Group.new('LspDiagnosticsDefaultInformation', c.base0B, c.none)
+
+-- XML highlighting
+Group.new('xmlTagName', c.base0D, c.none)
+Group.new('xmlCdatastart', c.base0A, c.none)
+Group.new('xmlEndTag', l.xmlTagName, l.xmlTagName)
+Group.new('xmlCdataCdata', l.xmlCdatastart, l.xmlCdatastart)
+
+-- MatchParen
+Group.new('MatchParen', c.base07, c.base08)
+
+-- CodeQL
+Group.new('CodeqlAstFocus', c.base00, c.base03)
+
+-- TreeSitter
+Group.new("TSError", l.Error.fg, c.none, s.bold)
+Group.new("TSPunctDelimiter", c.base05, c.none)
+Group.new("TSPunctBracket", c.base05, c.none)
+Group.new("TSConstant", l.Constant.fg, c.none)
+Group.new("TSConstBuiltin", l.Constant.fg, c.none)
+Group.new("TSConstMacro", l.Constant.fg, c.none)
+Group.new("TSString", l.String.fg, c.none)
+Group.new("TSStringRegex", c.base03, c.none)
+Group.new("TSStringEscape", c.base03, c.none)
+Group.new("TSCharacter", l.Character.fg, c.none)
+Group.new("TSNumber", l.Number.fg, c.none)
+Group.new("TSBoolean", l.Boolean.fg, c.none)
+Group.new("TSFloat", l.Number.fg, c.none)
+Group.new("TSFunction", l.Function.fg, c.none)
+Group.new("TSFuncBuiltin", l.Function.fg, c.none)
+Group.new("TSFuncMacro", l.Function.fg, c.none)
+Group.new("TSParameter", c.base0D, c.none)
+Group.new("TSConstructor", c.base0E, c.none)
+Group.new("TSKeywordFunction", c.base0E, c.none)
+Group.new("TSLiteral", c.base04, c.none, s.bold)
+Group.new("TSVariable", c.base03, c.none)
+Group.new("TSVariableBuiltin", c.base0E, c.none)
+Group.new("TSParameterReference", l.TSParameter.fg, c.none)
+Group.new("TSMethod", l.Function, c.none)
+Group.new("TSConditional", l.Conditional.fg, c.none)
+Group.new("TSRepeat", l.Repeat.fg, c.none)
+Group.new("TSLabel", l.Label.fg, c.none)
+Group.new("TSOperator", l.Operator.fg, c.none)
+Group.new("TSKeyword", l.Keyword.fg, c.none)
+Group.new("TSException", l.Exception.fg, c.none)
+Group.new("TSType", l.Type.fg, c.none)
+Group.new("TSTypeBuiltin", l.Type.fg, c.none)
+Group.new("TSStructure", l.Structure.fg, c.none)
+Group.new("TSInclude", l.Include.fg, c.none)
+Group.new("TSAnnotation", c.base03, c.none)
+Group.new("TSStrong", c.base05, c.base00, s.bold)
+Group.new("TSTitle", c.base0D, c.none)
