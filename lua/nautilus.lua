@@ -32,13 +32,13 @@ local hsl = lush.hsl
     Supernova #fbca00
 ]]--
 
-local base00 = hsl('#0b1f41')
-local base01 = hsl('#11305f')
-local base02 = hsl('#3a5488')
+local base00 = hsl('#0b1f41').darken(20)
+local base01 = hsl('#11305f').darken(20)
+local base02 = hsl('#3a5488').darken(20)
 local base03 = hsl('#80b2d6')
 local base04 = hsl('#3aa3e9')
 local base05 = hsl('#abb2bf')
-local base06 = hsl('#b6bdca')
+local base06 = hsl('#213554')
 local base07 = hsl('#c8ccd4')
 local base08 = hsl('#f04c75')
 local base09 = hsl('#ffae57')
@@ -48,7 +48,6 @@ local base0C = hsl('#56b6c2')
 local base0D = hsl('#01bfef')
 local base0E = hsl('#c678dd')
 local base0F = hsl('#be5046')
-local base10 = hsl('#213554')
 
 vim.g.terminal_color_0 = base00.hex
 vim.g.terminal_color_1 = base08.hex
@@ -73,6 +72,9 @@ return lush(function()
   return { 
     Normal { fg = base05, bg = base00 },
     NormalFloat { fg = base05, bg = base01 },
+    FloatBorder { fg = base02, bg = base01 },
+    LineNr { fg = base02, bg = base00.darken(20) },
+    CursorLineNr { fg = base0A, bg = base00.darken(20) },
     Bold { gui = 'bold' },
     Debug { fg = base08 },
     Directory { fg = base0D },
@@ -80,7 +82,7 @@ return lush(function()
     ErrorMsg { fg = base08 },
     Exception { fg = base08 },
     FoldColumn { fg = base03 },
-    Folded { fg = base03, bg = base01 },
+    Folded { fg = base03, bg = base00 },
     Italic { gui = 'italic' },
     Macro { fg = base08 },
     ModeMsg { fg = base0B },
@@ -97,10 +99,9 @@ return lush(function()
     WarningMsg { fg = base08 },
     WildMenu { fg = base08, bg = base0A },
     Title { fg = base0D },
-    Conceal { fg = base0D },
+    Conceal { bg = base01.darken(20), fg = base0D },
     Cursor { fg = base00, bg = base05 },
     NonText { fg = base03 },
-    LineNr { fg = base02, bg = base00 },
     LineNrNC { fg = base02, bg = base01 },
     SignColumn { fg = base01 },
     StatusLine { fg = base02, bg = base01 },
@@ -109,8 +110,7 @@ return lush(function()
     ColorColumn { fg = base01, bg = base01 },
     CursorColumn { bg = base01 },
     CursorLine { bg = base01 },
-    CursorLineNr { fg = base0A, bg = base00 },
-    QuickFixLine { bg = base10 },
+    QuickFixLine { bg = base06 },
     QFFileName { fg = base0A },
     QFLineNr { fg = base04 },
     PMenu { fg = base05, bg = base01 },
@@ -177,17 +177,17 @@ return lush(function()
     cssColor { fg = base0C },
 
     -- Diff highlighting
-    DiffAdd { fg = base0B, bg = base0B.darken(80) },
-    DiffAdded { fg = base0B, bg = base0B.darken(80) },
-    DiffNewFile { fg = base0B, bg = base0B.darken(80) },
+    DiffAdd { bg = base0B.darken(70) },
+    DiffAdded { bg = base0B.darken(70) },
+    DiffNewFile { bg = base0B.darken(70) },
 
     DiffDelete { fg = base08, bg = base08.darken(80) },
     DiffRemoved { fg = base08, bg = base08.darken(80) },
 
-    DiffChange { fg = base03, bg = base03.darken(60) },
-    DiffFile { fg = base03, bg = base03.darken(60) },
-    DiffLine { fg = base03, bg = base03.darken(60) },
-    DiffText { fg = base03, bg = base03.darken(60) },
+    DiffChange { bg = base03.darken(60) },
+    DiffFile { bg = base03.darken(60) },
+    DiffLine { bg = base03.darken(60) },
+    DiffText { bg = base03.darken(60) },
 
     -- Git highlighting
     gitcommitOverflow { fg = base08 },
@@ -200,11 +200,11 @@ return lush(function()
     gitcommitSelectedType { fg = base0D },
     gitcommitUnmergedType { fg = base0D },
     gitcommitDiscardedType { fg = base0D },
-    gitcommitBranch { fg = base09, gui = 'bold' },
+    gitcommitBranch { fg = base09 },
     gitcommitUntrackedFile { fg = base0A },
-    gitcommitUnmergedFile { fg = base08, gui = 'bold' },
-    gitcommitDiscardedFile { fg = base08, gui = 'bold' },
-    gitcommitSelectedFile { fg = base0B, gui = 'bold' },
+    gitcommitUnmergedFile { fg = base08 },
+    gitcommitDiscardedFile { fg = base08 },
+    gitcommitSelectedFile { fg = base0B },
 
     -- GitGutter highlighting
     GitGutterAdd { fg = base0B, bg = base01 },
@@ -262,7 +262,7 @@ return lush(function()
     markdownBold { fg = base05, gui = 'bold' },
     markdownBoldItalic { fg = base05, gui = 'bold,italic' },
     markdownCodeDelimiter { fg = base0B, gui = 'bold' },
-    markdownCode { fg = base07, bg = base10 },
+    markdownCode { fg = base07, bg = base06 },
     markdownCodeBlock { fg = base0B },
     markdownFootnoteDefinition { fg = base05, gui = 'italic' },
     markdownListMarker { fg = base05, gui = 'bold' },
@@ -332,7 +332,7 @@ return lush(function()
     javaOperator { fg = base0D },
 
     -- Vim
-    -- vimCommand { fg = hue_3, bg =  none },
+    -- vimCommand { fg = hue_3, bg = none },
     -- vimCommentTitle { fg = mono_3, gui = 'bold' },
     -- vimFunction { fg = l.Function, bg =  none },
     -- vimFuncName { fg = hue_3, bg =  none },
@@ -372,7 +372,7 @@ return lush(function()
     CodeqlAstFocus { fg = base00, bg = base03 },
 
     -- TreeSitter
-    TSError { fg = Error.bg, gui = 'bold' },
+    TSError { fg = Error.bg },
     TSPunctDelimiter { fg = base05 },
     TSPunctBracket { fg = base05 },
     TSConstant { fg = Constant.fg },
@@ -391,7 +391,7 @@ return lush(function()
     TSParameter { fg = base0D },
     TSConstructor { fg = base0E },
     TSKeywordFunction { fg = base0E },
-    TSLiteral { fg = base04, gui = 'bold' },
+    TSLiteral { fg = base04 },
     TSVariable { fg = base03 },
     TSVariableBuiltin { fg = base0E },
     TSParameterReference { fg = TSParameter.fg },
@@ -417,5 +417,27 @@ return lush(function()
 
     -- Indent-Blank-Lines
     IndentGuide { fg = base01 },
+
+    OctoEditable { bg = base01.darken(20) },
+    OctoUserViewer { bg = base01, fg = base0A },
+    OctoUser { bg = base00, fg = base04 },
+
+    IndentBlanklineChar {fg = base01, gui="nocombine"},
+    IndentBlanklineSpaceChar { fg = base08, gui="nocombine"},
+    IndentBlanklineSpaceCharBlankline { fg = base0B, gui="nocombine"},
+
+    LspFloatWinBorder { fg = base02 },
+    LspSagaDiagnosticBorder { fg = base02 },
+    LspSagaRenameBorder { fg = base02 },
+    LspSagaHoverBorder { fg = base02 },
+    LspSagaSignatureHelpBorder { fg = base02 },
+    LspSagaLspFinderBorder { fg = base02 },
+    LspSagaCodeActionBorder { fg = base02 },
+    LspSagaDefPreviewBorder { fg = base02 },
+    LspSagaDiagnosticTruncateLine { fg = base02 },
+    LspSagaShTruncateLine { fg = base02 },
+    LspSagaDocTruncateLine { fg = base02 },
+
+    DiffviewNormal { fg = base05, bg = base00 },
   }
 end)
