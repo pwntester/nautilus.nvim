@@ -4,11 +4,10 @@
 <img width="2134" alt="imagen" src="https://user-images.githubusercontent.com/125701/122771883-23631700-d2a7-11eb-8316-5c99194f5ed8.png">
 
 ## Setup
-Set the mode either to `blue` (default) or `grey`
 ```
-  use {'pwntester/nautilus.nvim', config = function()
-    require'nautilus'.setup({mode = "grey"})
-  end}
+use {'pwntester/nautilus.nvim', config = function()
+  require("nautilus").load {
+    transparent = true,
+  }
+end}
 ```
-## Requirements
-Install `https://github.com/rktjmp/lush.nvim`
