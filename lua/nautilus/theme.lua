@@ -3,12 +3,12 @@ local utils = require "nautilus.utils"
 local M = {}
 
 M.colors = {
-  bg = "#141824",
-  bg_alt = "#181e2e",
-  base00 = "#1f283b",
-  base01 = "#2A354C",
-  base02 = "#2E426B",
-  -- base03 = '#354360', markdown delimiters
+  bg = "#181e2e",
+  bg_alt = "#141824",
+  --base00 = "#1f283b",
+  --base01 = "#2A354C",
+  --base02 = "#2E426B",
+  cobalt = "#354360",
   red = "#f04c75",
   orange = "#ffae57",
   yellow = "#ffcc66",
@@ -17,12 +17,19 @@ M.colors = {
   purple = "#7a88cf",
   white = "#c8ccd4",
   grey = "#abb2bf",
-  blue = "#3aa3e9",
+  blue = "#719CD6", --"#3aa3e9",
   blue_dim = "#80b2d6",
   blue_bright = "#01bfef",
   cyan = "#56b6c2",
   none = "NONE",
 }
+
+-- Try this simplification, if I like it, remove base00, 01 and 02
+-- and rename bg_alt to cobalt and cobalt to cobalt_dim
+M.colors.base00 = M.colors.bg_alt
+M.colors.base01 = M.colors.bg_alt
+M.colors.base02 = M.colors.cobalt
+M.colors.cobalt = M.colors.cobalt
 
 function M.apply(config)
   local c = M.colors
@@ -71,8 +78,9 @@ function M.apply(config)
     LineNrNC = { fg = c.base02, bg = c.base01 },
     QFLineNr = { fg = c.blue },
     SignColumn = { fg = c.base01 },
+    -- if StatusLine and StatusLineNC have equal values, then Vim will use ^^^ in the status line of the current window
     StatusLine = { fg = c.base02, bg = c.base01 },
-    StatusLineNC = { fg = c.base02, bg = c.base01 },
+    StatusLineNC = { fg = c.base01, bg = c.base01 },
     VertSplit = { fg = c.base01 },
     ColorColumn = { fg = c.base01, bg = c.base01 },
     CursorColumn = { bg = c.bg },
@@ -229,7 +237,7 @@ function M.apply(config)
     markdownBoldItalic = { fg = c.grey, style = "bold,italic" },
     markdownCodeDelimiter = { fg = c.purple, style = "bold" },
     markdownCode = { fg = c.blue_bright },
-    --markdownCodeBlock = { fg = c.purple, bg = c.base00 },
+    -- markdownCodeBlock = { fg = c.purple, bg = c.base00 },
     markdownCodeBlock = { bg = c.base00 },
     markdownFootnoteDefinition = { fg = c.grey, style = "italic" },
     markdownListMarker = { fg = c.purple, style = "bold" },
@@ -243,8 +251,8 @@ function M.apply(config)
     markdownTaskDelimiter = { fg = c.purple },
     markdownTaskDONE = { fg = c.purple },
     markdownTaskTODO = { fg = c.purple },
-    markdownLinkTextDelimiter = { fg = c.base01 },
-    markdownLinkDelimiter = { fg = c.base01 },
+    markdownLinkTextDelimiter = { fg = c.cobalt },
+    markdownLinkDelimiter = { fg = c.cobalt },
 
     -- NERDTree highlighting
     NERDTreeDirSlash = { fg = c.blue_bright },
