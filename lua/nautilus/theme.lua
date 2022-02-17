@@ -489,6 +489,11 @@ function M.apply(config)
     -- CmpItemMenu = {fg = c.NonText.fg, bg = c.NonText.bg},
     -- CmpItemAbbrHatchFuzzy = { fg = c.base01, g:dark(), nil, s.italic).!
     CmpGhostText = { fg = utils.darken(c.grey, 0.8), bg = c.base00 },
+
+    -- Mini
+    MiniIndentscopeSymbol = { fg = c.cobalt, style = "nocombine" },
+    MiniCursorword = { fg = c.blue_dim, style = "nocombine" },
+    MiniCursorCurrent = { fg = c.grey, bg = config.transparent and c.none or c.bg },
   }
 
   return theme
