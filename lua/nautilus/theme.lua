@@ -82,6 +82,7 @@ function M.apply(config)
     StatusLine = { fg = c.base02, bg = c.base01 },
     StatusLineNC = { fg = c.base01, bg = c.base01 },
     VertSplit = { fg = c.base01 },
+    WinSeparator = { fg = c.cobalt },
     ColorColumn = { fg = c.base01, bg = c.base01 },
     CursorColumn = { bg = c.bg },
     QuickFixLine = { bg = c.base01 },
@@ -236,7 +237,7 @@ function M.apply(config)
     markdownBold = { fg = c.yellow, style = "bold" },
     markdownBoldItalic = { fg = c.grey, style = "bold,italic" },
     markdownCodeDelimiter = { fg = c.purple, style = "bold" },
-    markdownCode = { fg = c.blue_bright },
+    -- markdownCode = { fg = c.blue_bright },
     -- markdownCodeBlock = { fg = c.purple, bg = c.base00 },
     markdownCodeBlock = { bg = c.base00 },
     markdownFootnoteDefinition = { fg = c.grey, style = "italic" },
@@ -494,6 +495,16 @@ function M.apply(config)
     MiniIndentscopeSymbol = { fg = c.cobalt, style = "nocombine" },
     MiniCursorword = { fg = c.blue_dim, style = "nocombine" },
     MiniCursorCurrent = { fg = c.grey, bg = config.transparent and c.none or c.bg },
+
+    -- NeoTree
+    NeoTreeNormal = { bg = c.bg_alt },
+    NeoTreeNormalNC = { bg = c.bg_alt },
+    NeoTreeDirectoryName = { fg = c.blue },
+    NeoTreeDirectoryIcon = { fg = c.blue },
+    NeoTreeFileIcon = { fg = c.blue },
+    NeoTreeFileName = { fg = c.grey, bg = config.transparent and c.none or c.bg_alt },
+    NeoTreeRootName = { fg = c.yellow },
+    NeoTreeCursorLine = { fg = c.yellow },
   }
 
   return theme
