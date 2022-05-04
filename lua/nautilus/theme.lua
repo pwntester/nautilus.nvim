@@ -5,9 +5,6 @@ local M = {}
 M.colors = {
   bg = "#181e2e",
   bg_alt = "#141824",
-  --base00 = "#1f283b",
-  --base01 = "#2A354C",
-  --base02 = "#2E426B",
   cobalt = "#354360",
   red = "#f04c75",
   orange = "#ffae57",
@@ -452,44 +449,14 @@ function M.apply(config)
     NeogitDiffAddHighlight = { fg = c.green, bg = c.bg_alt },
     NeogitDiffDeleteHighlight = { fg = c.red, bg = c.bg_alt },
 
-    -- Nvim-tree
-    NvimTreeOpenedFile = { fg = c.yellow },
-    --NvimTreeNormal = { fg = c.grey, bg = c.bg_alt },
-
     -- Copilot
     -- CopilotSuggestion = {fg = c.Normal.bg},
 
-    -- Notify
-    -- NotifyERRORBody = { fg = c.grey, bg = c.red },
-    -- NotifyWARNBody = { fg = c.grey, bg = c.red },
-    -- NotifyINFOBody = { fg = c.grey, bg = c.red },
-    -- NotifyDEBUGBody = { fg = c.grey, bg = c.red },
-    -- NotifyTRACEBody = { fg = c.grey, bg = c.red },
-    --
-    -- NotifyERRORTitle = { fg = c.grey, bg = c.red },
-    -- NotifyWARNTitle = { fg = c.grey, bg = c.red },
-    -- NotifyINFOTitle = { fg = c.grey, bg = c.red },
-    -- NotifyDEBUGTitle  = { fg = c.grey, bg = c.red },
-    -- NotifyTRACETitle = { fg = c.grey, bg = c.red },
-    --
-    -- NotifyERRORIcon = { fg = c.grey, bg = c.red },
-    -- NotifyWARNIcon = { fg = c.grey, bg = c.red },
-    -- NotifyINFOIcon = { fg = c.grey, bg = c.red },
-    -- NotifyDEBUGIcon  = { fg = c.grey, bg = c.red },
-    -- NotifyTRACEIcon = { fg = c.grey, bg = c.red },
-    --
-    -- NotifyERRORBorder = { fg = c.grey, bg = c.red },
-    -- NotifyWARNBorder = { fg = c.grey, bg = c.red },
-    -- NotifyINFOBorder = { fg = c.grey, bg = c.red },
-    -- NotifyDEBUGBorder  = { fg = c.grey, bg = c.red },
-    -- NotifyTRACEBorder = { fg = c.grey, bg = c.red },
-
-    -- CmpItemAbbr = {fg = c.Comment.fg, bg = c.Comment.bg},
-    -- CmpItemAbbrDeprecated = { fg = c.Error.fg, bg = c.Error.bg },
-    -- CmpItemKind = { fg = c.Special.fg, bg = c.Special.bg},
-    -- CmpItemMenu = {fg = c.NonText.fg, bg = c.NonText.bg},
-    -- CmpItemAbbrHatchFuzzy = { fg = c.base01, g:dark(), nil, s.italic).!
+    -- nvim-cmp
     CmpGhostText = { fg = utils.darken(c.grey, 0.8), bg = c.base00 },
+    CmpFloat = { bg = c.cobalt },
+    CmpBorder = { fg = c.bg, bg = c.cobalt },
+    PmenuThumb = { bg = c.yellow },
 
     -- Mini
     MiniIndentscopeSymbol = { fg = c.cobalt, style = "nocombine" },
@@ -505,6 +472,7 @@ function M.apply(config)
     NeoTreeFileName = { fg = c.grey, bg = config.transparent and c.none or c.bg_alt },
     NeoTreeRootName = { fg = c.yellow },
     NeoTreeCursorLine = { fg = c.yellow },
+
   }
 
   return theme
