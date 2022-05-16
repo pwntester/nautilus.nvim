@@ -2,94 +2,106 @@ local utils = require "nautilus.utils"
 
 local M = {}
 
-M.colors = {
-  bg = "#181e2e",
-  bg_alt = "#141824",
-  cobalt = "#354360",
-  red = "#f04c75",
-  orange = "#ffae57",
-  yellow = "#ffcc66",
-  green = "#98c379",
-  magenta = "#c678dd",
-  purple = "#7a88cf",
-  white = "#c8ccd4",
-  grey = "#abb2bf",
-  blue = "#719CD6", --"#3aa3e9",
-  blue_dim = "#80b2d6",
-  blue_bright = "#01bfef",
-  cyan = "#56b6c2",
-  none = "NONE",
+local colors = {
+  default = {
+    bg = "#181e2e",
+    bg_alt = "#141824",
+    cobalt = "#354360",
+    red = "#f04c75",
+    orange = "#d2ac5c",
+    yellow = "#c7c463",
+    green = "#a5c96e",
+    magenta = "#a974ab",
+    purple = "#7a88cf",
+    white = "#c8ccd4",
+    grey = "#abb2bf",
+    blue = "#719CD6", --"#3aa3e9",
+    blue_dim = "#80b2d6",
+    blue_bright = "#01bfef",
+    cyan = "#56b6c2",
+    none = "NONE",
+  },
+  octonauts = {
+    bg = "#2f343f",
+    bg_alt = "#252931",
+    cobalt = "#3f5d7a", --#d38391
+    red = "#cb7165",
+    orange = "#ffae57",
+    yellow = "#ffcc66",
+    green = "#98c379",
+    magenta = "#c678dd",
+    purple = "#7a88cf",
+    white = "#c8ccd4",
+    grey = "#abb2bf",
+    blue = "#719CD6",
+    blue_dim = "#9bbdcb",
+    blue_bright = "#5E81AC",
+    cyan = "#3a8096",
+    none = "NONE",
+  }
 }
 
--- Try this simplification, if I like it, remove base00, 01 and 02
--- and rename bg_alt to cobalt and cobalt to cobalt_dim
-M.colors.base00 = M.colors.bg_alt
-M.colors.base01 = M.colors.bg_alt
-M.colors.base02 = M.colors.cobalt
-M.colors.cobalt = M.colors.cobalt
-
-function M.apply(config)
-  local c = M.colors
-
+function M.apply(opts)
+  opts.mode = opts.mode or "default"
+  local c = colors[opts.mode]
   local theme = {
     colors = c,
-    config = config,
-    name = "nautilus",
+    config = opts,
+    mode = opts.mode
   }
-
   theme.groups = {
-    Normal = { fg = c.grey, bg = config.transparent and c.none or c.bg },
+    Normal = { fg = c.grey, bg = opts.transparent and c.none or c.bg },
     NormalFloat = { fg = c.grey, bg = c.bg_alt },
     NormalAlt = { fg = c.grey, bg = c.bg_alt },
     FloatBorder = { fg = c.bg, bg = c.bg_alt },
-    LineNr = { fg = c.base02 },
+    LineNr = { fg = c.cobalt },
     CursorLine = {},
     CursorLineNr = { fg = c.yellow },
     Bold = { style = "bold" },
     Debug = { fg = c.red },
     Directory = { fg = c.blue_bright },
-    Error = { fg = c.base01, bg = c.red },
+    Error = { fg = c.bg_alt, bg = c.red },
     ErrorMsg = { fg = c.red },
     Exception = { fg = c.red },
     FoldColumn = { fg = c.blue_dim },
-    Folded = { fg = c.blue_dim, bg = c.base00 },
+    Folded = { fg = c.blue_dim, bg = c.bg_alt },
     Italic = { style = "italic" },
     Macro = { fg = c.red },
     ModeMsg = { fg = c.green },
     MoreMsg = { fg = c.green },
     Question = { fg = c.blue_bright },
-    Search = { fg = c.base00, bg = c.blue },
-    IncSearch = { fg = c.base00, bg = c.orange },
-    Substitute = { fg = c.base01, bg = c.yellow },
+    Search = { fg = c.bg_alt, bg = c.blue },
+    IncSearch = { fg = c.bg_alt, bg = c.orange },
+    Substitute = { fg = c.bg_alt, bg = c.yellow },
     SpecialKey = { fg = c.blue_dim },
     TooLong = { fg = c.red },
     Underlined = { fg = c.red },
-    Visual = { bg = c.base02 },
+    Visual = { bg = c.cobalt },
     VisualNOS = { fg = c.red },
     WarningMsg = { fg = c.red },
     WildMenu = { fg = c.red, bg = c.yellow },
     Title = { fg = c.blue_bright },
-    Conceal = { bg = c.base02, fg = c.blue_bright },
-    Cursor = { fg = c.base00, bg = c.grey },
+    Conceal = { bg = c.cobalt, fg = c.blue_bright },
+    Cursor = { fg = c.bg_alt, bg = c.grey },
     NonText = { fg = c.blue_dim },
-    LineNrNC = { fg = c.base02, bg = c.base01 },
+    LineNrNC = { fg = c.cobalt, bg = c.bg_alt },
     QFLineNr = { fg = c.blue },
-    SignColumn = { fg = c.base01 },
+    SignColumn = { fg = c.bg_alt },
     -- if StatusLine and StatusLineNC have equal values, then Vim will use ^^^ in the status line of the current window
-    StatusLine = { fg = c.base02, bg = c.base01 },
-    StatusLineNC = { fg = c.base01, bg = c.base01 },
-    VertSplit = { fg = c.base01 },
+    StatusLine = { fg = c.cobalt, bg = c.bg_alt },
+    StatusLineNC = { fg = c.bg_alt, bg = c.bg_alt },
+    VertSplit = { fg = c.bg_alt },
     WinSeparator = { fg = c.cobalt },
-    ColorColumn = { fg = c.base01, bg = c.base01 },
+    ColorColumn = { fg = c.bg_alt, bg = c.bg_alt },
     CursorColumn = { bg = c.bg },
-    QuickFixLine = { bg = c.base01 },
+    QuickFixLine = { bg = c.bg_alt },
     QFFileName = { fg = c.yellow },
-    PMenu = { fg = c.grey, bg = c.base01 },
-    PMenuSel = { fg = c.base00, bg = c.yellow },
-    TabLine = { fg = c.blue_dim, bg = c.base00 },
-    TabLineSel = { fg = c.base00, bg = c.yellow },
-    TabLineFill = { fg = c.blue_dim, bg = c.base00 },
-    EndOfBuffer = { fg = c.base01 },
+    PMenu = { fg = c.grey, bg = c.bg_alt },
+    PMenuSel = { fg = c.bg_alt, bg = c.yellow },
+    TabLine = { fg = c.blue_dim, bg = c.bg_alt },
+    TabLineSel = { fg = c.bg_alt, bg = c.yellow },
+    TabLineFill = { fg = c.blue_dim, bg = c.bg_alt },
+    EndOfBuffer = { fg = c.bg_alt },
 
     -- Standard syntax highlighting
     Boolean = { fg = c.orange },
@@ -116,7 +128,7 @@ function M.apply(config)
     String = { fg = c.green },
     Structure = { fg = c.magenta },
     Tag = { fg = c.yellow },
-    Todo = { fg = c.yellow, bg = c.base01 },
+    Todo = { fg = c.yellow, bg = c.bg_alt },
     Type = { fg = c.yellow },
     Typedef = { fg = c.yellow },
 
@@ -177,10 +189,10 @@ function M.apply(config)
     gitcommitSelectedFile = { fg = c.green },
 
     -- GitGutter highlighting
-    GitGutterAdd = { fg = c.green, bg = c.base01 },
-    GitGutterChange = { fg = c.blue_bright, bg = c.base01 },
-    GitGutterDelete = { fg = c.red, bg = c.base01 },
-    GitGutterChangeDelete = { fg = c.magenta, bg = c.base01 },
+    GitGutterAdd = { fg = c.green, bg = c.bg_alt },
+    GitGutterChange = { fg = c.blue_bright, bg = c.bg_alt },
+    GitGutterDelete = { fg = c.red, bg = c.bg_alt },
+    GitGutterChangeDelete = { fg = c.magenta, bg = c.bg_alt },
 
     -- HTML highlighting
     htmlBold = { fg = c.yellow },
@@ -235,12 +247,12 @@ function M.apply(config)
     markdownBoldItalic = { fg = c.grey, style = "bold,italic" },
     markdownCodeDelimiter = { fg = c.purple, style = "bold" },
     -- markdownCode = { fg = c.blue_bright },
-    -- markdownCodeBlock = { fg = c.purple, bg = c.base00 },
-    markdownCodeBlock = { bg = c.base00 },
+    -- markdownCodeBlock = { fg = c.purple, bg = c.bg_alt },
+    markdownCodeBlock = { bg = c.bg_alt },
     markdownFootnoteDefinition = { fg = c.grey, style = "italic" },
     markdownListMarker = { fg = c.purple, style = "bold" },
     markdownLineBreak = { fg = c.red, style = "underline" },
-    markdownError = { fg = c.grey, bg = c.base00 },
+    markdownError = { fg = c.grey, bg = c.bg_alt },
     markdownFootnote = { fg = c.magenta, style = "italic" },
     markdownBlockquote = { fg = c.cyan, style = "italic" },
     markdownLinkText = { fg = c.green },
@@ -284,9 +296,9 @@ function M.apply(config)
     sassMixinName = { fg = c.blue_bright },
 
     -- Signify highlighting
-    -- SignifySignAdd = { fg = c.green, bg = c.base00 },
-    -- SignifySignChange = { fg = c.blue_dim, bg = c.base00 },
-    -- SignifySignDelete = { fg = c.red, bg = c.base00 },
+    -- SignifySignAdd = { fg = c.green, bg = c.bg_alt },
+    -- SignifySignChange = { fg = c.blue_dim, bg = c.bg_alt },
+    -- SignifySignDelete = { fg = c.red, bg = c.bg_alt },
 
     -- Spelling highlighting
     SpellBad = { style = "undercurl" }, --, red)
@@ -329,7 +341,7 @@ function M.apply(config)
     TelescopePreviewBorder = { fg = c.bg, bg = c.bg_alt },
     TelescopeResultsBorder = { fg = c.bg, bg = c.bg_alt },
     TelescopePromptBorder = { fg = c.bg, bg = c.bg_alt },
-    -- TelescopeBorder = { fg = c.base02, bg = c.base01 },
+    -- TelescopeBorder = { fg = c.cobalt, bg = c.bg_alt },
     TelescopePromptPrefix = { fg = c.red },
     TelescopeMatching = { fg = c.blue },
     TelescopeSelection = { fg = c.yellow },
@@ -351,8 +363,8 @@ function M.apply(config)
     MatchParen = { fg = c.white, bg = c.red },
 
     -- CodeQL
-    CodeqlAstFocus = { fg = c.base00, bg = c.blue_dim },
-    CodeQLWindowPicker = { fg = c.base00, bg = c.blue_bright },
+    CodeqlAstFocus = { fg = c.bg_alt, bg = c.blue_dim },
+    CodeQLWindowPicker = { fg = c.bg_alt, bg = c.blue_bright },
 
     -- TreeSitter
     TSError = { fg = c.red },
@@ -387,7 +399,7 @@ function M.apply(config)
     TSStructure = { fg = c.magenta },
     TSInclude = { fg = c.blue_bright },
     TSAnnotation = { fg = c.blue_dim },
-    TSStrong = { fg = c.grey, bg = c.base00, style = "bold" },
+    TSStrong = { fg = c.grey, bg = c.bg_alt, style = "bold" },
     TSTitle = { fg = c.yellow },
     TSLiteral = { fg = c.blue_bright },
     TSPunctBracket = { fg = utils.darken(c.grey, 0.8) },
@@ -409,38 +421,38 @@ function M.apply(config)
     GitSignsChange = { fg = c.blue_dim },
 
     -- Indent-Blank-Lines
-    IndentGuide = { fg = c.base01 },
+    IndentGuide = { fg = c.bg_alt },
 
     -- Octo,nvim
     OctoUserViewer = { bg = c.bg, fg = c.yellow },
-    OctoUser = { bg = c.base00, fg = c.blue },
+    OctoUser = { bg = c.bg_alt, fg = c.blue },
     OctoStateOpen = { fg = c.green },
     OctoGreen = { fg = c.green },
 
     -- IndentBlankline
-    IndentBlanklineChar = { fg = c.base01, style = "nocombine" },
+    IndentBlanklineChar = { fg = c.bg_alt, style = "nocombine" },
     IndentBlanklineSpaceChar = { fg = c.red, style = "nocombine" },
     IndentBlanklineSpaceCharBlankline = { fg = c.green, style = "nocombine" },
 
     -- LSP
-    LspFloatWinBorder = { fg = c.base02 },
-    LspSagaDiagnosticBorder = { fg = c.base02 },
-    LspSagaRenameBorder = { fg = c.base02 },
-    LspSagaHoverBorder = { fg = c.base02 },
-    LspSagaSignatureHelpBorder = { fg = c.base02 },
-    LspSagaLspFinderBorder = { fg = c.base02 },
-    LspSagaCodeActionBorder = { fg = c.base02 },
-    LspSagaDefPreviewBorder = { fg = c.base02 },
-    LspSagaDiagnosticTruncateLine = { fg = c.base02 },
-    LspSagaShTruncateLine = { fg = c.base02 },
-    LspSagaDocTruncateLine = { fg = c.base02 },
+    LspFloatWinBorder = { fg = c.cobalt },
+    LspSagaDiagnosticBorder = { fg = c.cobalt },
+    LspSagaRenameBorder = { fg = c.cobalt },
+    LspSagaHoverBorder = { fg = c.cobalt },
+    LspSagaSignatureHelpBorder = { fg = c.cobalt },
+    LspSagaLspFinderBorder = { fg = c.cobalt },
+    LspSagaCodeActionBorder = { fg = c.cobalt },
+    LspSagaDefPreviewBorder = { fg = c.cobalt },
+    LspSagaDiagnosticTruncateLine = { fg = c.cobalt },
+    LspSagaShTruncateLine = { fg = c.cobalt },
+    LspSagaDocTruncateLine = { fg = c.cobalt },
 
     -- DiffView
-    DiffviewNormal = { fg = c.grey, bg = c.base00 },
+    DiffviewNormal = { fg = c.grey, bg = c.bg_alt },
 
     -- Nvim
-    -- NvimNotificationInfo = { fg = c.yellow, bg = c.base00},
-    -- NvimNotificationError = { fg = c.red, bg = c.base00},
+    -- NvimNotificationInfo = { fg = c.yellow, bg = c.bg_alt},
+    -- NvimNotificationError = { fg = c.red, bg = c.bg_alt},
 
     -- Neogit
     NeogitHunkHeader = { bg = c.bg_alt },
@@ -453,15 +465,15 @@ function M.apply(config)
     -- CopilotSuggestion = {fg = c.Normal.bg},
 
     -- nvim-cmp
-    CmpGhostText = { fg = utils.darken(c.grey, 0.8), bg = c.base00 },
-    CmpFloat = { bg = c.cobalt },
-    CmpBorder = { fg = c.bg, bg = c.cobalt },
+    CmpGhostText = { fg = utils.darken(c.grey, 0.8), bg = c.bg_alt },
+    CmpFloat = { bg = c.bg_alt },
+    CmpBorder = { fg = c.bg, bg = c.bg_alt },
     PmenuThumb = { bg = c.yellow },
 
     -- Mini
     MiniIndentscopeSymbol = { fg = c.cobalt, style = "nocombine" },
     MiniCursorword = { fg = c.blue_dim, style = "nocombine" },
-    MiniCursorCurrent = { fg = c.grey, bg = config.transparent and c.none or c.bg },
+    MiniCursorCurrent = { fg = c.grey, bg = opts.transparent and c.none or c.bg },
 
     -- NeoTree
     NeoTreeNormal = { bg = c.bg_alt },
@@ -469,7 +481,7 @@ function M.apply(config)
     NeoTreeDirectoryName = { fg = c.blue },
     NeoTreeDirectoryIcon = { fg = c.blue },
     NeoTreeFileIcon = { fg = c.blue },
-    NeoTreeFileName = { fg = c.grey, bg = config.transparent and c.none or c.bg_alt },
+    NeoTreeFileName = { fg = c.grey, bg = opts.transparent and c.none or c.bg_alt },
     NeoTreeRootName = { fg = c.yellow },
     NeoTreeCursorLine = { fg = c.yellow },
 
