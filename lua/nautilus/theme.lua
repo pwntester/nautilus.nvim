@@ -3,43 +3,69 @@ local utils = require "nautilus.utils"
 local M = {}
 
 local colors = {
-  default = {
+  brightynauts = {
     bg = "#181e2e",
     bg_alt = "#141824",
-    cobalt = "#354360",
     red = "#f04c75",
     orange = "#d2ac5c",
     yellow = "#c7c463",
     green = "#a5c96e",
     magenta = "#a974ab",
     purple = "#7a88cf",
+    blue = "#719CD6",
+    blue2 = "#80b2d6",
+    blue3 = "#01bfef",
+    blue4 = "#354360",
+    blue5 = "#56b6c2",
     white = "#c8ccd4",
     grey = "#abb2bf",
-    blue = "#719CD6", --"#3aa3e9",
-    blue_dim = "#80b2d6",
-    blue_bright = "#01bfef",
-    cyan = "#56b6c2",
+    grey2 = "#898E99",
+    grey3 = "#676B73",
     none = "NONE",
   },
   octonauts = {
     bg = "#2f343f",
     bg_alt = "#252931",
-    cobalt = "#3f5d7a", --#d38391
-    red = "#cb7165",
+    red = "#d38391",
     orange = "#ffae57",
     yellow = "#ffcc66",
     green = "#98c379",
     magenta = "#c678dd",
     purple = "#7a88cf",
+    blue = "#719CD6",
+    blue2 = "#9bbdcb",
+    blue3 = "#5E81AC",
+    blue4 = "#3f5d7a",
+    blue5 = "#3a8096",
     white = "#c8ccd4",
     grey = "#abb2bf",
+    grey2 = "#898E99",
+    grey3 = "#676B73",
+    none = "NONE",
+  },
+  blueynauts = {
+    bg = "#222637",
+    bg_alt = "#171c28",
+    red = "#d38391",
+    orange = "#ffae57",
+    yellow = "#ffcc66",
+    green = "#98c379",
+    magenta = "#c678dd",
+    purple = "#7a88cf",
     blue = "#719CD6",
-    blue_dim = "#9bbdcb",
-    blue_bright = "#5E81AC",
-    cyan = "#3a8096",
+    blue2 = "#9bbdcb",
+    blue3 = "#5E81AC",
+    blue4 = "#3f5d7a",
+    blue5 = "#3a8096",
+    white = "#c8ccd4",
+    grey = "#abb2bf",
+    grey2 = "#898E99",
+    grey3 = "#676B73",
     none = "NONE",
   }
 }
+
+colors.default = colors.blueynauts
 
 function M.apply(opts)
   opts.mode = opts.mode or "default"
@@ -54,74 +80,74 @@ function M.apply(opts)
     NormalFloat = { fg = c.grey, bg = c.bg_alt },
     NormalAlt = { fg = c.grey, bg = c.bg_alt },
     FloatBorder = { fg = c.bg, bg = c.bg_alt },
-    LineNr = { fg = c.cobalt },
+    LineNr = { fg = c.blue4 },
     CursorLine = {},
     CursorLineNr = { fg = c.yellow },
     Bold = { style = "bold" },
     Debug = { fg = c.red },
-    Directory = { fg = c.blue_bright },
+    Directory = { fg = c.blue3 },
     Error = { fg = c.bg_alt, bg = c.red },
     ErrorMsg = { fg = c.red },
     Exception = { fg = c.red },
-    FoldColumn = { fg = c.blue_dim },
-    Folded = { fg = c.blue_dim, bg = c.bg_alt },
+    FoldColumn = { fg = c.blue2 },
+    Folded = { fg = c.blue2, bg = c.bg_alt },
     Italic = { style = "italic" },
     Macro = { fg = c.red },
     ModeMsg = { fg = c.green },
     MoreMsg = { fg = c.green },
-    Question = { fg = c.blue_bright },
+    Question = { fg = c.blue3 },
     Search = { fg = c.bg_alt, bg = c.blue },
     IncSearch = { fg = c.bg_alt, bg = c.orange },
     Substitute = { fg = c.bg_alt, bg = c.yellow },
-    SpecialKey = { fg = c.blue_dim },
+    SpecialKey = { fg = c.blue2 },
     TooLong = { fg = c.red },
     Underlined = { fg = c.red },
-    Visual = { bg = c.cobalt },
+    Visual = { bg = c.blue4 },
     VisualNOS = { fg = c.red },
     WarningMsg = { fg = c.red },
     WildMenu = { fg = c.red, bg = c.yellow },
-    Title = { fg = c.blue_bright },
-    Conceal = { bg = c.cobalt, fg = c.blue_bright },
+    Title = { fg = c.blue3 },
+    Conceal = { bg = c.blue4, fg = c.blue3 },
     Cursor = { fg = c.bg_alt, bg = c.grey },
-    NonText = { fg = c.blue_dim },
-    LineNrNC = { fg = c.cobalt, bg = c.bg_alt },
+    NonText = { fg = c.blue2 },
+    LineNrNC = { fg = c.blue4, bg = c.bg_alt },
     QFLineNr = { fg = c.blue },
     SignColumn = { fg = c.bg_alt },
     -- if StatusLine and StatusLineNC have equal values, then Vim will use ^^^ in the status line of the current window
-    StatusLine = { fg = c.cobalt, bg = c.bg_alt },
+    StatusLine = { fg = c.blue4, bg = c.bg_alt },
     StatusLineNC = { fg = c.bg_alt, bg = c.bg_alt },
     VertSplit = { fg = c.bg_alt },
-    WinSeparator = { fg = c.cobalt },
+    WinSeparator = { fg = c.blue4 },
     ColorColumn = { fg = c.bg_alt, bg = c.bg_alt },
     CursorColumn = { bg = c.bg },
     QuickFixLine = { bg = c.bg_alt },
     QFFileName = { fg = c.yellow },
     PMenu = { fg = c.grey, bg = c.bg_alt },
     PMenuSel = { fg = c.bg_alt, bg = c.yellow },
-    TabLine = { fg = c.blue_dim, bg = c.bg_alt },
+    TabLine = { fg = c.blue2, bg = c.bg_alt },
     TabLineSel = { fg = c.bg_alt, bg = c.yellow },
-    TabLineFill = { fg = c.blue_dim, bg = c.bg_alt },
+    TabLineFill = { fg = c.blue2, bg = c.bg_alt },
     EndOfBuffer = { fg = c.bg_alt },
 
     -- Standard syntax highlighting
     Boolean = { fg = c.orange },
     Character = { fg = c.red },
-    Comment = { fg = c.blue_dim },
+    Comment = { fg = c.blue2 },
     Conditional = { fg = c.magenta },
     Constant = { fg = c.orange },
     Define = { fg = c.magenta },
     Delimiter = { fg = c.purple },
     Float = { fg = c.orange },
-    Function = { fg = c.blue_bright },
+    Function = { fg = c.blue3 },
     Identifier = { fg = c.yellow },
-    Include = { fg = c.blue_bright },
+    Include = { fg = c.blue3 },
     Keyword = { fg = c.magenta },
     Label = { fg = c.yellow },
-    Number = { fg = c.blue_dim },
-    Operator = { fg = c.blue_dim },
+    Number = { fg = c.blue2 },
+    Operator = { fg = c.blue2 },
     PreProc = { fg = c.yellow },
     Repeat = { fg = c.yellow },
-    Special = { fg = c.cyan },
+    Special = { fg = c.blue5 },
     SpecialChar = { fg = c.purple },
     Statement = { fg = c.red },
     StorageClass = { fg = c.yellow },
@@ -137,11 +163,11 @@ function M.apply(opts)
     ---
 
     -- Help
-    HelpDoc = { fg = c.grey, bg = c.blue_bright, style = "bold,italic" },
+    HelpDoc = { fg = c.grey, bg = c.blue3, style = "bold,italic" },
     HelpIgnore = { fg = c.green, style = "bold,italic" },
 
     -- C highlighting
-    cOperator = { fg = c.cyan },
+    cOperator = { fg = c.blue5 },
     cPreCondit = { fg = c.magenta },
 
     -- C# highlighting
@@ -149,14 +175,14 @@ function M.apply(opts)
     csAttribute = { fg = c.yellow },
     csModifier = { fg = c.magenta },
     csType = { fg = c.red },
-    csUnspecifiedStatement = { fg = c.blue_bright },
+    csUnspecifiedStatement = { fg = c.blue3 },
     csContextualStatement = { fg = c.magenta },
     csNewDecleration = { fg = c.red },
 
     -- CSS highlighting
     cssBraces = { fg = c.grey },
     cssClassName = { fg = c.magenta },
-    cssColor = { fg = c.cyan },
+    cssColor = { fg = c.blue5 },
 
     -- Diff highlighting
     DiffAdd = { fg = c.green, bg = utils.darken(c.green, 0.3) },
@@ -166,22 +192,22 @@ function M.apply(opts)
     DiffDelete = { fg = c.red, bg = utils.darken(c.red, 0.2) },
     DiffRemoved = { fg = c.red, bg = utils.darken(c.red, 0.2) },
 
-    DiffChange = { bg = utils.darken(c.blue_dim, 0.4) },
-    DiffFile = { bg = utils.darken(c.blue_dim, 0.4) },
-    DiffLine = { bg = utils.darken(c.blue_dim, 0.4) },
-    DiffText = { bg = utils.darken(c.blue_dim, 0.4) },
+    DiffChange = { bg = utils.darken(c.blue2, 0.4) },
+    DiffFile = { bg = utils.darken(c.blue2, 0.4) },
+    DiffLine = { bg = utils.darken(c.blue2, 0.4) },
+    DiffText = { bg = utils.darken(c.blue2, 0.4) },
 
     -- Git highlighting
     gitcommitOverflow = { fg = c.red },
     gitcommitSummary = { fg = c.green },
-    gitcommitComment = { fg = c.blue_dim },
-    gitcommitUntracked = { fg = c.blue_dim },
-    gitcommitDiscarded = { fg = c.blue_dim },
-    gitcommitSelected = { fg = c.blue_dim },
+    gitcommitComment = { fg = c.blue2 },
+    gitcommitUntracked = { fg = c.blue2 },
+    gitcommitDiscarded = { fg = c.blue2 },
+    gitcommitSelected = { fg = c.blue2 },
     gitcommitHeader = { fg = c.magenta },
-    gitcommitSelectedType = { fg = c.blue_bright },
-    gitcommitUnmergedType = { fg = c.blue_bright },
-    gitcommitDiscardedType = { fg = c.blue_bright },
+    gitcommitSelectedType = { fg = c.blue3 },
+    gitcommitUnmergedType = { fg = c.blue3 },
+    gitcommitDiscardedType = { fg = c.blue3 },
     gitcommitBranch = { fg = c.orange },
     gitcommitUntrackedFile = { fg = c.yellow },
     gitcommitUnmergedFile = { fg = c.red },
@@ -190,7 +216,7 @@ function M.apply(opts)
 
     -- GitGutter highlighting
     GitGutterAdd = { fg = c.green, bg = c.bg_alt },
-    GitGutterChange = { fg = c.blue_bright, bg = c.bg_alt },
+    GitGutterChange = { fg = c.blue3, bg = c.bg_alt },
     GitGutterDelete = { fg = c.red, bg = c.bg_alt },
     GitGutterChangeDelete = { fg = c.magenta, bg = c.bg_alt },
 
@@ -199,7 +225,7 @@ function M.apply(opts)
     htmlItalic = { fg = c.magenta },
     htmlEndTag = { fg = c.grey },
     htmlTag = { fg = c.grey },
-    htmlTagName = { fg = c.blue_dim },
+    htmlTagName = { fg = c.blue2 },
 
     -- JavaScript highlighting
     javaScript = { fg = c.grey },
@@ -207,17 +233,17 @@ function M.apply(opts)
     javaScriptNumber = { fg = c.orange },
 
     -- pangloss/vim-javascript highlighting
-    jsOperator = { fg = c.blue_bright },
+    jsOperator = { fg = c.blue3 },
     jsStatement = { fg = c.magenta },
     jsReturn = { fg = c.magenta },
     jsThis = { fg = c.red },
     jsClassDefinition = { fg = c.yellow },
     jsFunction = { fg = c.magenta },
-    jsFuncName = { fg = c.blue_bright },
-    jsFuncCall = { fg = c.blue_bright },
-    jsClassFuncName = { fg = c.blue_bright },
+    jsFuncName = { fg = c.blue3 },
+    jsFuncCall = { fg = c.blue3 },
+    jsClassFuncName = { fg = c.blue3 },
     jsClassMethodType = { fg = c.magenta },
-    jsRegexpString = { fg = c.cyan },
+    jsRegexpString = { fg = c.blue5 },
     jsGlobalObjects = { fg = c.yellow },
     jsGlobalNodeObjects = { fg = c.yellow },
     jsExceptions = { fg = c.yellow },
@@ -227,11 +253,11 @@ function M.apply(opts)
     mailQuoted1 = { fg = c.yellow },
     mailQuoted2 = { fg = c.green },
     mailQuoted3 = { fg = c.magenta },
-    mailQuoted4 = { fg = c.cyan },
-    mailQuoted5 = { fg = c.blue_bright },
+    mailQuoted4 = { fg = c.blue5 },
+    mailQuoted5 = { fg = c.blue3 },
     mailQuoted6 = { fg = c.yellow },
-    mailURL = { fg = c.blue_bright },
-    mailEmail = { fg = c.blue_bright },
+    mailURL = { fg = c.blue3 },
+    mailEmail = { fg = c.blue3 },
 
     -- Markdown highlighting
     markdownHeadingDelimiter = { fg = c.purple },
@@ -246,7 +272,7 @@ function M.apply(opts)
     markdownBold = { fg = c.yellow, style = "bold" },
     markdownBoldItalic = { fg = c.grey, style = "bold,italic" },
     markdownCodeDelimiter = { fg = c.purple, style = "bold" },
-    -- markdownCode = { fg = c.blue_bright },
+    -- markdownCode = { fg = c.blue3 },
     -- markdownCodeBlock = { fg = c.purple, bg = c.bg_alt },
     markdownCodeBlock = { bg = c.bg_alt },
     markdownFootnoteDefinition = { fg = c.grey, style = "italic" },
@@ -254,25 +280,25 @@ function M.apply(opts)
     markdownLineBreak = { fg = c.red, style = "underline" },
     markdownError = { fg = c.grey, bg = c.bg_alt },
     markdownFootnote = { fg = c.magenta, style = "italic" },
-    markdownBlockquote = { fg = c.cyan, style = "italic" },
+    markdownBlockquote = { fg = c.blue5, style = "italic" },
     markdownLinkText = { fg = c.green },
     markdownUrl = { fg = c.grey },
     wikiLinkText = { fg = c.green },
     markdownTaskDelimiter = { fg = c.purple },
     markdownTaskDONE = { fg = c.purple },
     markdownTaskTODO = { fg = c.purple },
-    markdownLinkTextDelimiter = { fg = c.cobalt },
-    markdownLinkDelimiter = { fg = c.cobalt },
+    markdownLinkTextDelimiter = { fg = c.blue4 },
+    markdownLinkDelimiter = { fg = c.blue4 },
 
     -- NERDTree highlighting
-    NERDTreeDirSlash = { fg = c.blue_bright },
+    NERDTreeDirSlash = { fg = c.blue3 },
     NERDTreeExecFile = { fg = c.grey },
 
     -- PHP highlighting
     phpMemberSelector = { fg = c.grey },
     phpComparison = { fg = c.grey },
     phpParent = { fg = c.grey },
-    phpMethodsVar = { fg = c.cyan },
+    phpMethodsVar = { fg = c.blue5 },
 
     -- Python highlighting
     pythonOperator = { fg = c.magenta },
@@ -281,10 +307,10 @@ function M.apply(opts)
     pythonStatement = { fg = c.magenta },
 
     -- Ruby highlighting
-    rubyAttribute = { fg = c.blue_bright },
+    rubyAttribute = { fg = c.blue3 },
     rubyConstant = { fg = c.yellow },
     rubyInterpolationDelimiter = { fg = c.purple },
-    rubyRegexp = { fg = c.cyan },
+    rubyRegexp = { fg = c.blue5 },
     rubySymbol = { fg = c.green },
     rubyStringDelimiter = { fg = c.green },
 
@@ -293,33 +319,33 @@ function M.apply(opts)
     sassClassChar = { fg = c.orange },
     sassInclude = { fg = c.magenta },
     sassMixing = { fg = c.magenta },
-    sassMixinName = { fg = c.blue_bright },
+    sassMixinName = { fg = c.blue3 },
 
     -- Signify highlighting
     -- SignifySignAdd = { fg = c.green, bg = c.bg_alt },
-    -- SignifySignChange = { fg = c.blue_dim, bg = c.bg_alt },
+    -- SignifySignChange = { fg = c.blue2, bg = c.bg_alt },
     -- SignifySignDelete = { fg = c.red, bg = c.bg_alt },
 
     -- Spelling highlighting
     SpellBad = { style = "undercurl" }, --, red)
-    SpellLocal = { style = "undercurl" }, --, cyan)
-    SpellCap = { style = "undercurl" }, --, blue_bright)
+    SpellLocal = { style = "undercurl" }, --, blue5)
+    SpellCap = { style = "undercurl" }, --, blue3)
     SpellRare = { style = "undercurl" }, --, magenta)
 
     -- Startify highlighting
-    StartifyBracket = { fg = c.blue_dim },
+    StartifyBracket = { fg = c.blue2 },
     StartifyFile = { fg = c.white },
-    StartifyFooter = { fg = c.blue_dim },
+    StartifyFooter = { fg = c.blue2 },
     StartifyHeader = { fg = c.green },
     StartifyNumber = { fg = c.orange },
-    StartifyPath = { fg = c.blue_dim },
+    StartifyPath = { fg = c.blue2 },
     StartifySection = { fg = c.magenta },
-    StartifySelect = { fg = c.cyan },
-    StartifySlash = { fg = c.blue_dim },
-    StartifySpecial = { fg = c.blue_dim },
+    StartifySelect = { fg = c.blue5 },
+    StartifySlash = { fg = c.blue2 },
+    StartifySpecial = { fg = c.blue2 },
 
     -- Java highlighting
-    javaOperator = { fg = c.blue_bright },
+    javaOperator = { fg = c.blue3 },
 
     -- Vim
     -- vimCommand = { fg = c.hue_3, bg = c.none },
@@ -341,7 +367,7 @@ function M.apply(opts)
     TelescopePreviewBorder = { fg = c.bg, bg = c.bg_alt },
     TelescopeResultsBorder = { fg = c.bg, bg = c.bg_alt },
     TelescopePromptBorder = { fg = c.bg, bg = c.bg_alt },
-    -- TelescopeBorder = { fg = c.cobalt, bg = c.bg_alt },
+    -- TelescopeBorder = { fg = c.blue4, bg = c.bg_alt },
     TelescopePromptPrefix = { fg = c.red },
     TelescopeMatching = { fg = c.blue },
     TelescopeSelection = { fg = c.yellow },
@@ -354,7 +380,7 @@ function M.apply(opts)
     DiagnostictHint = { fg = c.yellow },
 
     -- XML highlighting
-    xmlTagName = { fg = c.blue_bright },
+    xmlTagName = { fg = c.blue3 },
     xmlCdatastart = { fg = c.yellow },
     --xmlEndTag = { fg = c.xmlTagName.bg },
     --xmlCdataCdata = { fg = c.xmlCdatastart.bg },
@@ -363,8 +389,8 @@ function M.apply(opts)
     MatchParen = { fg = c.white, bg = c.red },
 
     -- CodeQL
-    CodeqlAstFocus = { fg = c.bg_alt, bg = c.blue_dim },
-    CodeQLWindowPicker = { fg = c.bg_alt, bg = c.blue_bright },
+    CodeqlAstFocus = { fg = c.bg_alt, bg = c.blue2 },
+    CodeQLWindowPicker = { fg = c.bg_alt, bg = c.blue3 },
 
     -- TreeSitter
     TSError = { fg = c.red },
@@ -372,45 +398,45 @@ function M.apply(opts)
     TSConstBuiltin = { fg = c.orange },
     TSConstMacro = { fg = c.orange },
     TSString = { fg = c.green },
-    TSStringRegex = { fg = c.blue_dim },
-    TSStringEscape = { fg = c.blue_dim },
+    TSStringRegex = { fg = c.blue2 },
+    TSStringEscape = { fg = c.blue2 },
     TSCharacter = { fg = c.red },
-    TSNumber = { fg = c.blue_dim },
+    TSNumber = { fg = c.blue2 },
     TSBoolean = { fg = c.orange },
-    TSFloat = { fg = c.blue_dim },
-    TSFunction = { fg = c.blue_bright },
-    TSFuncBuiltin = { fg = c.blue_bright },
-    TSFuncMacro = { fg = c.blue_bright },
-    TSParameter = { fg = c.blue_bright },
+    TSFloat = { fg = c.blue2 },
+    TSFunction = { fg = c.blue3 },
+    TSFuncBuiltin = { fg = c.blue3 },
+    TSFuncMacro = { fg = c.blue3 },
+    TSParameter = { fg = c.blue3 },
     TSConstructor = { fg = c.magenta },
     TSKeywordFunction = { fg = c.magenta },
-    TSVariable = { fg = c.blue_dim },
+    TSVariable = { fg = c.blue2 },
     TSVariableBuiltin = { fg = c.magenta },
-    TSParameterReference = { fg = c.blue_bright },
-    TSMethod = { fg = c.blue_bright },
+    TSParameterReference = { fg = c.blue3 },
+    TSMethod = { fg = c.blue3 },
     TSConditional = { fg = c.magenta },
     TSRepeat = { fg = c.yellow },
     TSLabel = { fg = c.yellow },
-    TSOperator = { fg = c.blue_dim },
+    TSOperator = { fg = c.blue2 },
     TSKeyword = { fg = c.magenta },
     TSException = { fg = c.red },
     TSType = { fg = c.yellow },
     TSTypeBuiltin = { fg = c.yellow },
     TSStructure = { fg = c.magenta },
-    TSInclude = { fg = c.blue_bright },
-    TSAnnotation = { fg = c.blue_dim },
+    TSInclude = { fg = c.blue3 },
+    TSAnnotation = { fg = c.blue2 },
     TSStrong = { fg = c.grey, bg = c.bg_alt, style = "bold" },
     TSTitle = { fg = c.yellow },
-    TSLiteral = { fg = c.blue_bright },
-    TSPunctBracket = { fg = utils.darken(c.grey, 0.8) },
-    TSPunctDelimiter = { fg = utils.darken(c.grey, 0.6) },
+    TSLiteral = { fg = c.blue3 },
+    TSPunctBracket = { fg = c.grey2 },
+    TSPunctDelimiter = { fg = c.grey3 },
 
     -- TreeSitter Markdown
     -- TSTitle
     -- TSLiteral
     -- TSStrong
     -- TSStringEscape
-    TSEmphasis = { fg = c.blue_bright },
+    TSEmphasis = { fg = c.blue3 },
     TSURI = { fg = c.grey },
     TSTextReference = { fg = c.green },
     TSPunctSpecial = { fg = c.purple },
@@ -418,7 +444,7 @@ function M.apply(opts)
     -- Diff highlighting
     GitSignsAdd = { fg = c.green },
     GitSignsDelete = { fg = c.red },
-    GitSignsChange = { fg = c.blue_dim },
+    GitSignsChange = { fg = c.blue2 },
 
     -- Indent-Blank-Lines
     IndentGuide = { fg = c.bg_alt },
@@ -435,17 +461,17 @@ function M.apply(opts)
     IndentBlanklineSpaceCharBlankline = { fg = c.green, style = "nocombine" },
 
     -- LSP
-    LspFloatWinBorder = { fg = c.cobalt },
-    LspSagaDiagnosticBorder = { fg = c.cobalt },
-    LspSagaRenameBorder = { fg = c.cobalt },
-    LspSagaHoverBorder = { fg = c.cobalt },
-    LspSagaSignatureHelpBorder = { fg = c.cobalt },
-    LspSagaLspFinderBorder = { fg = c.cobalt },
-    LspSagaCodeActionBorder = { fg = c.cobalt },
-    LspSagaDefPreviewBorder = { fg = c.cobalt },
-    LspSagaDiagnosticTruncateLine = { fg = c.cobalt },
-    LspSagaShTruncateLine = { fg = c.cobalt },
-    LspSagaDocTruncateLine = { fg = c.cobalt },
+    LspFloatWinBorder = { fg = c.blue4 },
+    LspSagaDiagnosticBorder = { fg = c.blue4 },
+    LspSagaRenameBorder = { fg = c.blue4 },
+    LspSagaHoverBorder = { fg = c.blue4 },
+    LspSagaSignatureHelpBorder = { fg = c.blue4 },
+    LspSagaLspFinderBorder = { fg = c.blue4 },
+    LspSagaCodeActionBorder = { fg = c.blue4 },
+    LspSagaDefPreviewBorder = { fg = c.blue4 },
+    LspSagaDiagnosticTruncateLine = { fg = c.blue4 },
+    LspSagaShTruncateLine = { fg = c.blue4 },
+    LspSagaDocTruncateLine = { fg = c.blue4 },
 
     -- DiffView
     DiffviewNormal = { fg = c.grey, bg = c.bg_alt },
@@ -465,14 +491,14 @@ function M.apply(opts)
     -- CopilotSuggestion = {fg = c.Normal.bg},
 
     -- nvim-cmp
-    CmpGhostText = { fg = utils.darken(c.grey, 0.8), bg = c.bg_alt },
+    CmpGhostText = { fg = c.grey2, bg = c.bg_alt },
     CmpFloat = { bg = c.bg_alt },
     CmpBorder = { fg = c.bg, bg = c.bg_alt },
-    PmenuThumb = { bg = c.yellow },
+    PmenuThumb = { bg = c.grey2 },
 
     -- Mini
-    MiniIndentscopeSymbol = { fg = c.cobalt, style = "nocombine" },
-    MiniCursorword = { fg = c.blue_dim, style = "nocombine" },
+    MiniIndentscopeSymbol = { fg = c.blue4, style = "nocombine" },
+    MiniCursorword = { fg = c.blue2, style = "nocombine" },
     MiniCursorCurrent = { fg = c.grey, bg = opts.transparent and c.none or c.bg },
 
     -- NeoTree
