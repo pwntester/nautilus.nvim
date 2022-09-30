@@ -37,6 +37,7 @@ local colors = {
     blue3 = "#5E81AC",
     blue4 = "#3f5d7a",
     blue5 = "#3a8096",
+    blue6 = "#3a84cc",
     white = "#c8ccd4",
     grey = "#abb2bf",
     grey2 = "#898E99",
@@ -132,7 +133,7 @@ function M.apply(opts)
     -- Standard syntax highlighting
     Boolean = { fg = c.orange },
     Character = { fg = c.red },
-    Comment = { fg = c.blue2 },
+    Comment = { fg = c.blue3 },
     Conditional = { fg = c.magenta },
     Constant = { fg = c.orange },
     Define = { fg = c.magenta },
@@ -327,10 +328,10 @@ function M.apply(opts)
     -- SignifySignDelete = { fg = c.red, bg = c.bg_alt },
 
     -- Spelling highlighting
-    SpellBad = { style = "undercurl" }, --, red)
-    SpellLocal = { style = "undercurl" }, --, blue5)
-    SpellCap = { style = "undercurl" }, --, blue3)
-    SpellRare = { style = "undercurl" }, --, magenta)
+    SpellBad = { sp = c.red, style = "undercurl" },
+    SpellLocal = { sp = c.blue5, style = "undercurl" },
+    SpellCap = { sp = c.blue3, style = "undercurl" },
+    SpellRare = { sp = c.magenta, style = "undercurl" },
 
     -- Startify highlighting
     StartifyBracket = { fg = c.blue2 },
@@ -372,12 +373,6 @@ function M.apply(opts)
     TelescopeMatching = { fg = c.blue },
     TelescopeSelection = { fg = c.yellow },
     TelescopeSelectionCaret = { fg = c.yellow, bg = c.bg_alt },
-
-    --LSP highlighting
-    DiagnosticError = { fg = c.red },
-    DiagnosticWarn = { fg = c.orange },
-    DiagnosticInfor = { fg = c.green },
-    DiagnostictHint = { fg = c.yellow },
 
     -- XML highlighting
     xmlTagName = { fg = c.blue3 },
@@ -462,17 +457,59 @@ function M.apply(opts)
 
     -- LSP
     LspFloatWinBorder = { fg = c.blue4 },
-    LspSagaDiagnosticBorder = { fg = c.blue4 },
-    LspSagaRenameBorder = { fg = c.blue4 },
-    LspSagaHoverBorder = { fg = c.blue4 },
-    LspSagaSignatureHelpBorder = { fg = c.blue4 },
-    LspSagaLspFinderBorder = { fg = c.blue4 },
-    LspSagaCodeActionBorder = { fg = c.blue4 },
-    LspSagaDefPreviewBorder = { fg = c.blue4 },
-    LspSagaDiagnosticTruncateLine = { fg = c.blue4 },
-    LspSagaShTruncateLine = { fg = c.blue4 },
-    LspSagaDocTruncateLine = { fg = c.blue4 },
 
+    DiagnosticError = { fg = c.red },
+    DiagnosticWarn = { fg = c.orange },
+    DiagnosticInfor = { fg = c.blue },
+    DiagnostictHint = { fg = c.green },
+    -- DiagnosticUnderlineError = { sp = c.red, style = "underline", },
+    -- DiagnosticUnderlineWarn = { sp = c.orange, style = "underline", },
+    -- DiagnosticUnderlineInfor = { sp = c.blue, style = "underline", },
+    -- DiagnosticUnderlineHint = { sp = c.green, style = "underline", },
+    DiagnosticUnderlineError = { style = c.none, },
+    DiagnosticUnderlineWarn = { style = c.none, },
+    DiagnosticUnderlineInfor = { style = c.none, },
+    DiagnosticUnderlineHint = { style = c.none, },
+    --
+    -- LspDiagnosticsDefaultError = { fg = c.red, },
+    -- LspDiagnosticsDefaultWarning = { fg = c.orange, },
+    -- LspDiagnosticsDefaultInformation = { fg = c.yellow, },
+    -- LspDiagnosticsDefaultInfo = { fg = c.yellow, },
+    -- LspDiagnosticsDefaultHint = { fg = c.blue, },
+    -- LspDiagnosticsVirtualTextError = { fg = c.red, },
+    -- LspDiagnosticsVirtualTextWarning = { fg = c.orange, },
+    -- LspDiagnosticsVirtualTextInformation = { fg = c.yellow, },
+    -- LspDiagnosticsVirtualTextInfo = { fg = c.yellow, },
+    -- LspDiagnosticsVirtualTextHint = { fg = c.blue, },
+    -- LspDiagnosticsFloatingError = { fg = c.red, },
+    -- LspDiagnosticsFloatingWarning = { fg = c.orange, },
+    -- LspDiagnosticsFloatingInformation = { fg = c.yellow, },
+    -- LspDiagnosticsFloatingInfo = { fg = c.yellow, },
+    -- LspDiagnosticsFloatingHint = { fg = c.blue, },
+    -- DiagnosticSignError = { fg = c.red, },
+    -- DiagnosticSignWarning = { fg = c.orange, },
+    -- DiagnosticSignInformation = { fg = c.yellow, },
+    -- DiagnosticSignInfo = { fg = c.yellow, },
+    -- DiagnosticSignHint = { fg = c.blue, },
+    -- LspDiagnosticsSignError = { fg = c.red, },
+    -- LspDiagnosticsSignWarning = { fg = c.orange, },
+    -- LspDiagnosticsSignInformation = { fg = c.yellow, },
+    -- LspDiagnosticsSignInfo = { fg = c.yellow, },
+    -- LspDiagnosticsSignHint = { fg = c.blue, },
+    -- LspDiagnosticsError = { fg = c.red, },
+    -- LspDiagnosticsWarning = { fg = c.orange, },
+    -- LspDiagnosticsInformation = { fg = c.yellow, },
+    -- LspDiagnosticsInfo = { fg = c.yellow, },
+    -- LspDiagnosticsHint = { fg = c.blue, },
+    -- LspDiagnosticsUnderlineError = { style = "underline", },
+    -- LspDiagnosticsUnderlineWarning = { style = "underline", },
+    -- LspDiagnosticsUnderlineInformation = { style = "underline", },
+    -- LspDiagnosticsUnderlineInfo = { style = "underline", },
+    -- LspDiagnosticsUnderlineHint = { style = "underline", },
+    -- LspReferenceRead = { bg = "#36383F", },
+    -- LspReferenceText = { bg = "#36383F", },
+    -- LspReferenceWrite = { bg = "#36383f", },
+    --
     -- DiffView
     DiffviewNormal = { fg = c.grey, bg = c.bg_alt },
 
@@ -491,10 +528,45 @@ function M.apply(opts)
     -- CopilotSuggestion = {fg = c.Normal.bg},
 
     -- nvim-cmp
+    CmpItemAbbrMatch = { fg = c.blue3 },
+    CmpItemAbbr = { fg = c.grey2 },
+    CmpItemAbbrDeprecated = { fg = c.grey, style = "strikethrough", },
+    CmpItemAbbrMatchFuzzy = { fg = c.blue, },
     CmpGhostText = { fg = c.grey2, bg = c.bg_alt },
     CmpFloat = { bg = c.bg_alt },
     CmpBorder = { fg = c.bg, bg = c.bg_alt },
     PmenuThumb = { bg = c.grey2 },
+
+    -- nvim-cmp kinds
+    CmpItemKindFunction = { fg = c.magenta, },
+    CmpItemKindMethod = { fg = c.magenta, },
+    CmpItemKindConstructor = { fg = c.orange, },
+    CmpItemKindClass = { fg = c.orange, },
+    CmpItemKindEnum = { fg = c.orange, },
+    CmpItemKindEvent = { fg = c.magenta, },
+    CmpItemKindInterface = { fg = c.blue2, },
+    CmpItemKindStruct = { fg = c.blue, },
+    CmpItemKindVariable = { fg = c.blue, },
+    CmpItemKindField = { fg = c.blue, },
+    CmpItemKindProperty = { fg = c.blue, },
+    CmpItemKindEnumMember = { fg = c.blue2, },
+    CmpItemKindConstant = { fg = c.blue, },
+    CmpItemKindKeyword = { fg = c.yellow, },
+    CmpItemKindModule = { fg = c.yellow, },
+    CmpItemKindValue = { fg = c.yellow, },
+    CmpItemKindUnit = { fg = c.yellow, },
+    CmpItemKindText = { fg = c.yellow, },
+    CmpItemKindSnippet = { fg = c.yellow, },
+    CmpItemKindFile = { fg = c.yellow, },
+    CmpItemKindFolder = { fg = c.yellow, },
+    CmpItemKindColor = { fg = c.yellow, },
+    CmpItemKindReference = { fg = c.yellow, },
+    CmpItemKindOperator = { fg = c.yellow, },
+    CmpItemKindTypeParameter = { fg = c.yellow, },
+
+    -- cmp-copilot
+    CmpItemKindCopilot = { fg = c.green },
+
 
     -- Mini
     MiniIndentscopeSymbol = { fg = c.blue4, style = "nocombine" },
@@ -510,6 +582,42 @@ function M.apply(opts)
     NeoTreeFileName = { fg = c.grey, bg = opts.transparent and c.none or c.bg_alt },
     NeoTreeRootName = { fg = c.yellow },
     NeoTreeCursorLine = { fg = c.yellow },
+
+    -- Lualine
+    LualineNormal = { fg = c.white, bg = c.blue6 },
+
+    -- Winbar
+    WinbarFilename = { fg = c.yellow },
+    WinbarContext = { fg = c.blue2 },
+
+    -- Navic
+    NavicText = { fg = c.blue2 },
+    NavicSeparator = { fg = c.yellow },
+    NavicIconsFunction = { fg = c.magenta, },
+    NavicIconsMethod = { fg = c.magenta, },
+    NavicIconsConstructor = { fg = c.orange, },
+    NavicIconsClass = { fg = c.orange, },
+    NavicIconsEnum = { fg = c.orange, },
+    NavicIconsEvent = { fg = c.magenta, },
+    NavicIconsInterface = { fg = c.blue2, },
+    NavicIconsStruct = { fg = c.blue, },
+    NavicIconsVariable = { fg = c.blue, },
+    NavicIconsField = { fg = c.blue, },
+    NavicIconsProperty = { fg = c.blue, },
+    NavicIconsEnumMember = { fg = c.blue2, },
+    NavicIconsConstant = { fg = c.blue, },
+    NavicIconsKeyword = { fg = c.yellow, },
+    NavicIconsModule = { fg = c.yellow, },
+    NavicIconsValue = { fg = c.yellow, },
+    NavicIconsUnit = { fg = c.yellow, },
+    NavicIconsText = { fg = c.yellow, },
+    NavicIconsSnippet = { fg = c.yellow, },
+    NavicIconsFile = { fg = c.yellow, },
+    NavicIconsFolder = { fg = c.yellow, },
+    NavicIconsColor = { fg = c.yellow, },
+    NavicIconsReference = { fg = c.yellow, },
+    NavicIconsOperator = { fg = c.yellow, },
+    NavicIconsTypeParameter = { fg = c.yellow, },
 
   }
 

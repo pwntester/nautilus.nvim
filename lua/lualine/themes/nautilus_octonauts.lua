@@ -3,36 +3,37 @@ local theme = require("nautilus.theme").apply({
 })
 
 local colors = theme.colors
+local bg = colors.bg
 
 return {
   normal = {
-    a = { bg = colors.bg, fg = colors.white },
-    b = { bg = colors.bg, fg = colors.blue_dim },
-    c = { bg = colors.bg, fg = colors.yellow }
+    a = { bg = bg, fg = colors.white },
+    b = { bg = bg, fg = colors.blue_dim },
+    c = { bg = bg, fg = colors.yellow }
   },
   insert = {
-    a = { bg = colors.bg, fg = colors.white },
-    b = { bg = colors.bg, fg = colors.blue_dim },
-    c = { bg = colors.bg, fg = colors.yellow }
+    a = { bg = bg, fg = colors.white },
+    b = { bg = bg, fg = colors.blue_dim },
+    c = { bg = bg, fg = colors.yellow }
   },
   visual = {
-    a = { bg = colors.bg, fg = colors.white },
-    b = { bg = colors.bg, fg = colors.blue_dim },
-    c = { bg = colors.bg, fg = colors.yellow }
+    a = { bg = bg, fg = colors.white },
+    b = { bg = bg, fg = colors.blue_dim },
+    c = { bg = bg, fg = colors.yellow }
   },
   replace = {
-    a = { bg = colors.bg, fg = colors.white },
-    b = { bg = colors.bg, fg = colors.blue_dim },
-    c = { bg = colors.bg, fg = colors.yellow }
+    a = { bg = bg, fg = colors.white },
+    b = { bg = bg, fg = colors.blue_dim },
+    c = { bg = bg, fg = colors.yellow }
   },
   command = {
-    a = { bg = colors.bg, fg = colors.white },
-    b = { bg = colors.bg, fg = colors.blue_dim },
-    c = { bg = colors.bg, fg = colors.yellow }
+    a = { bg = bg, fg = colors.white },
+    b = { bg = bg, fg = colors.blue_dim },
+    c = { bg = bg, fg = colors.yellow }
   },
   inactive = {
-    a = { bg = colors.bg, fg = colors.white },
-    b = { bg = colors.bg, fg = colors.blue_dim },
-    c = { bg = colors.bg, fg = colors.yellow }
+    a = { bg = bg, fg = colors.white },
+    b = { bg = bg, fg = colors.blue_dim },
+    c = { bg = bg, fg = colors.yellow }
   }
 }
