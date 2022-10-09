@@ -2,7 +2,7 @@ local utils = require "nautilus.utils"
 
 local M = {}
 
-local colors = {
+M.colors = {
   brightynauts = {
     bg = "#181e2e",
     bg_alt = "#141824",
@@ -66,11 +66,11 @@ local colors = {
   }
 }
 
-colors.default = colors.blueynauts
+M.colors.default = M.colors.blueynauts
 
 function M.apply(opts)
   opts.mode = opts.mode or "default"
-  local c = colors[opts.mode]
+  local c = M.colors[opts.mode]
   local theme = {
     colors = c,
     config = opts,
