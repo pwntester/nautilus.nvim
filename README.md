@@ -5,7 +5,8 @@
 ![Nautilus](https://user-images.githubusercontent.com/125701/147829998-3dd0e401-a2ee-4d16-b2b0-2c47a0d8f3da.png)
 
 ## Setup
-```
+
+```lua
 use {'pwntester/nautilus.nvim', config = function()
   require("nautilus").load {
     transparent = true,
