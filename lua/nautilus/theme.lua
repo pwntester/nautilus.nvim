@@ -620,7 +620,7 @@ function M.apply(opts)
     NavicIconsTypeParameter = { fg = c.yellow, },
 
     -- Noice
-    NoiceCmdlinePopupBorder = { fg = c.red },
+    NoiceCmdlinePopupBorder = { fg = c.green },
     NoiceVirtualText = { fg = c.orange }
 
   }
