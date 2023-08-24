@@ -3,7 +3,7 @@ local utils = require "nautilus.utils"
 local M = {}
 
 M.colors = {
-  brightynauts = {
+  bright = {
     bg = "#181e2e",
     bg_alt = "#141824",
     red = "#f04c75",
@@ -44,7 +44,7 @@ M.colors = {
     grey3 = "#676B73",
     none = "NONE",
   },
-  blueynauts = {
+  bluey = {
     bg = "#222637",
     bg_alt = "#171c28",
     red = "#d38391",
@@ -81,8 +81,9 @@ function M.apply(opts)
     NormalFloat = { fg = c.grey, bg = c.bg_alt },
     NormalAlt = { fg = c.grey, bg = c.bg_alt },
     FloatBorder = { fg = c.bg, bg = c.bg_alt },
+    MsgArea = { fg = c.orange },
     LineNr = { fg = c.blue4 },
-    CursorLine = {},
+    CursorLine = { fg = c.grey },
     CursorLineNr = { fg = c.yellow },
     Bold = { style = "bold" },
     Debug = { fg = c.red },
@@ -91,6 +92,11 @@ function M.apply(opts)
     ErrorMsg = { fg = c.red },
     Exception = { fg = c.red },
     FoldColumn = { fg = c.blue2 },
+    FoldColumn1 = { fg = utils.darken(c.blue2, 1) },
+    FoldColumn2 = { fg = utils.darken(c.blue2, 0.8) },
+    FoldColumn3 = { fg = utils.darken(c.blue2, 0.6) },
+    FoldColumn4 = { fg = utils.darken(c.blue2, 0.4) },
+    FoldColumn5 = { fg = utils.darken(c.blue2, 0.2) },
     Folded = { fg = c.blue2, bg = c.bg_alt },
     Italic = { style = "italic" },
     Macro = { fg = c.red },
@@ -129,7 +135,6 @@ function M.apply(opts)
     TabLineSel = { fg = c.bg_alt, bg = c.yellow },
     TabLineFill = { fg = c.blue2, bg = c.bg_alt },
     EndOfBuffer = { fg = c.bg_alt },
-
     -- Standard syntax highlighting
     Boolean = { fg = c.orange },
     Character = { fg = c.red },
@@ -147,7 +152,7 @@ function M.apply(opts)
     Number = { fg = c.blue2 },
     Operator = { fg = c.blue2 },
     PreProc = { fg = c.yellow },
-    Repeat = { fg = c.yellow },
+    Repeat = { fg = c.magenta },
     Special = { fg = c.blue5 },
     SpecialChar = { fg = c.purple },
     Statement = { fg = c.red },
@@ -158,7 +163,6 @@ function M.apply(opts)
     Todo = { fg = c.yellow, bg = c.bg_alt },
     Type = { fg = c.yellow },
     Typedef = { fg = c.yellow },
-
     ---
     -- Extra definitions
     ---
@@ -166,11 +170,9 @@ function M.apply(opts)
     -- Help
     HelpDoc = { fg = c.grey, bg = c.blue3, style = "bold,italic" },
     HelpIgnore = { fg = c.green, style = "bold,italic" },
-
     -- C highlighting
     cOperator = { fg = c.blue5 },
     cPreCondit = { fg = c.magenta },
-
     -- C# highlighting
     csClass = { fg = c.yellow },
     csAttribute = { fg = c.yellow },
@@ -179,25 +181,20 @@ function M.apply(opts)
     csUnspecifiedStatement = { fg = c.blue3 },
     csContextualStatement = { fg = c.magenta },
     csNewDecleration = { fg = c.red },
-
     -- CSS highlighting
     cssBraces = { fg = c.grey },
     cssClassName = { fg = c.magenta },
     cssColor = { fg = c.blue5 },
-
     -- Diff highlighting
     DiffAdd = { fg = c.green, bg = utils.darken(c.green, 0.3) },
     DiffAdded = { fg = c.green, bg = utils.darken(c.green, 0.3) },
     DiffNewFile = { fg = c.green, bg = utils.darken(c.green, 0.3) },
-
     DiffDelete = { fg = c.red, bg = utils.darken(c.red, 0.2) },
     DiffRemoved = { fg = c.red, bg = utils.darken(c.red, 0.2) },
-
     DiffChange = { bg = utils.darken(c.blue2, 0.4) },
     DiffFile = { bg = utils.darken(c.blue2, 0.4) },
     DiffLine = { bg = utils.darken(c.blue2, 0.4) },
     DiffText = { bg = utils.darken(c.blue2, 0.4) },
-
     -- Git highlighting
     gitcommitOverflow = { fg = c.red },
     gitcommitSummary = { fg = c.green },
@@ -214,25 +211,21 @@ function M.apply(opts)
     gitcommitUnmergedFile = { fg = c.red },
     gitcommitDiscardedFile = { fg = c.red },
     gitcommitSelectedFile = { fg = c.green },
-
     -- GitGutter highlighting
     GitGutterAdd = { fg = c.green, bg = c.bg_alt },
     GitGutterChange = { fg = c.blue3, bg = c.bg_alt },
     GitGutterDelete = { fg = c.red, bg = c.bg_alt },
     GitGutterChangeDelete = { fg = c.magenta, bg = c.bg_alt },
-
     -- HTML highlighting
     htmlBold = { fg = c.yellow },
     htmlItalic = { fg = c.magenta },
     htmlEndTag = { fg = c.grey },
     htmlTag = { fg = c.grey },
     htmlTagName = { fg = c.blue2 },
-
     -- JavaScript highlighting
     javaScript = { fg = c.grey },
     javaScriptBraces = { fg = c.grey },
     javaScriptNumber = { fg = c.orange },
-
     -- pangloss/vim-javascript highlighting
     jsOperator = { fg = c.blue3 },
     jsStatement = { fg = c.magenta },
@@ -249,7 +242,6 @@ function M.apply(opts)
     jsGlobalNodeObjects = { fg = c.yellow },
     jsExceptions = { fg = c.yellow },
     jsBuiltins = { fg = c.yellow },
-
     -- Mail highlighting
     mailQuoted1 = { fg = c.yellow },
     mailQuoted2 = { fg = c.green },
@@ -259,7 +251,6 @@ function M.apply(opts)
     mailQuoted6 = { fg = c.yellow },
     mailURL = { fg = c.blue3 },
     mailEmail = { fg = c.blue3 },
-
     -- Markdown highlighting
     markdownHeadingDelimiter = { fg = c.purple },
     markdownh1 = { fg = c.yellow, style = "bold" },
@@ -290,23 +281,19 @@ function M.apply(opts)
     markdownTaskTODO = { fg = c.purple },
     markdownLinkTextDelimiter = { fg = c.blue4 },
     markdownLinkDelimiter = { fg = c.blue4 },
-
     -- NERDTree highlighting
     NERDTreeDirSlash = { fg = c.blue3 },
     NERDTreeExecFile = { fg = c.grey },
-
     -- PHP highlighting
     phpMemberSelector = { fg = c.grey },
     phpComparison = { fg = c.grey },
     phpParent = { fg = c.grey },
     phpMethodsVar = { fg = c.blue5 },
-
     -- Python highlighting
     pythonOperator = { fg = c.magenta },
     pythonRepeat = { fg = c.magenta },
     pythonInclude = { fg = c.magenta },
     pythonStatement = { fg = c.magenta },
-
     -- Ruby highlighting
     rubyAttribute = { fg = c.blue3 },
     rubyConstant = { fg = c.yellow },
@@ -314,14 +301,12 @@ function M.apply(opts)
     rubyRegexp = { fg = c.blue5 },
     rubySymbol = { fg = c.green },
     rubyStringDelimiter = { fg = c.green },
-
     -- SASS highlighting
     sassidChar = { fg = c.red },
     sassClassChar = { fg = c.orange },
     sassInclude = { fg = c.magenta },
     sassMixing = { fg = c.magenta },
     sassMixinName = { fg = c.blue3 },
-
     -- Signify highlighting
     -- SignifySignAdd = { fg = c.green, bg = c.bg_alt },
     -- SignifySignChange = { fg = c.blue2, bg = c.bg_alt },
@@ -332,7 +317,6 @@ function M.apply(opts)
     SpellLocal = { sp = c.blue5, style = "undercurl" },
     SpellCap = { sp = c.blue3, style = "undercurl" },
     SpellRare = { sp = c.magenta, style = "undercurl" },
-
     -- Startify highlighting
     StartifyBracket = { fg = c.blue2 },
     StartifyFile = { fg = c.white },
@@ -344,10 +328,8 @@ function M.apply(opts)
     StartifySelect = { fg = c.blue5 },
     StartifySlash = { fg = c.blue2 },
     StartifySpecial = { fg = c.blue2 },
-
     -- Java highlighting
     javaOperator = { fg = c.blue3 },
-
     -- Vim
     -- vimCommand = { fg = c.hue_3, bg = c.none },
     -- vimCommentTitle = { fg = c.mono_3, style ='bold' },
@@ -364,7 +346,6 @@ function M.apply(opts)
     -- Telescope highlighting
     TelescopeNormal = { fg = c.grey, bg = c.bg_alt },
     TelescopePreviewNormal = { fg = c.grey, bg = c.bg_alt },
-
     TelescopePreviewBorder = { fg = c.bg, bg = c.bg_alt },
     TelescopeResultsBorder = { fg = c.bg, bg = c.bg_alt },
     TelescopePromptBorder = { fg = c.bg, bg = c.bg_alt },
@@ -373,7 +354,6 @@ function M.apply(opts)
     TelescopeMatching = { fg = c.blue },
     TelescopeSelection = { fg = c.yellow },
     TelescopeSelectionCaret = { fg = c.yellow, bg = c.bg_alt },
-
     -- XML highlighting
     xmlTagName = { fg = c.blue3 },
     xmlCdatastart = { fg = c.yellow },
@@ -382,50 +362,98 @@ function M.apply(opts)
 
     -- MatchParen
     MatchParen = { fg = c.white, bg = c.red },
-
     -- CodeQL
     CodeqlAstFocus = { fg = c.bg_alt, bg = c.blue2 },
     CodeQLWindowPicker = { fg = c.bg_alt, bg = c.blue3 },
-
     -- TreeSitter
-    TSError = { fg = c.red },
-    TSConstant = { fg = c.orange },
-    TSConstBuiltin = { fg = c.orange },
-    TSConstMacro = { fg = c.orange },
-    TSString = { fg = c.green },
-    TSStringRegex = { fg = c.blue2 },
-    TSStringEscape = { fg = c.blue2 },
-    TSCharacter = { fg = c.red },
-    TSNumber = { fg = c.blue2 },
-    TSBoolean = { fg = c.orange },
-    TSFloat = { fg = c.blue2 },
-    TSFunction = { fg = c.blue3 },
-    TSFuncBuiltin = { fg = c.blue3 },
-    TSFuncMacro = { fg = c.blue3 },
-    TSParameter = { fg = c.blue3 },
-    TSConstructor = { fg = c.magenta },
-    TSKeywordFunction = { fg = c.magenta },
-    TSVariable = { fg = c.blue2 },
-    TSVariableBuiltin = { fg = c.magenta },
-    TSParameterReference = { fg = c.blue3 },
-    TSMethod = { fg = c.blue3 },
-    TSConditional = { fg = c.magenta },
-    TSRepeat = { fg = c.yellow },
-    TSLabel = { fg = c.yellow },
-    TSOperator = { fg = c.blue2 },
-    TSKeyword = { fg = c.magenta },
-    TSException = { fg = c.red },
-    TSType = { fg = c.yellow },
-    TSTypeBuiltin = { fg = c.yellow },
-    TSStructure = { fg = c.magenta },
-    TSInclude = { fg = c.blue3 },
-    TSAnnotation = { fg = c.blue2 },
-    TSStrong = { fg = c.grey, bg = c.bg_alt, style = "bold" },
-    TSTitle = { fg = c.yellow },
-    TSLiteral = { fg = c.blue3 },
-    TSPunctBracket = { fg = c.grey2 },
-    TSPunctDelimiter = { fg = c.grey3 },
-
+    --- Misc
+    ["@operator"] = { fg = c.blue2 },
+    ["@error"] = { fg = c.red },
+    ["@constant"] = { fg = c.orange },
+    ["@constant.builtin"] = { fg = c.orange },
+    ["@constant.macro"] = { fg = c.orange },
+    ["@character"] = { fg = c.red },
+    ["@number"] = { fg = c.blue2 },
+    ["@boolean"] = { fg = c.orange },
+    ["@float"] = { fg = c.blue2 },
+    ["@function"] = { fg = c.blue3 },
+    ["@function.builtin"] = { fg = c.blue3 },
+    ["@function.macro"] = { fg = c.blue3 },
+    ["@parameter.reference"] = { fg = c.blue3 },
+    ["@method"] = { fg = c.blue3 },
+    ["@conditional"] = { fg = c.magenta },
+    ["@repeat"] = { fg = c.magenta },
+    ["@exception"] = { fg = c.red },
+    ["@type.builtin"] = { fg = c.yellow },
+    ["@structure"] = { fg = c.magenta },
+    ["@include"] = { fg = c.blue3 },
+    ["@annotation"] = { fg = c.blue2 },
+    ["@strong"] = { fg = c.grey, bg = c.bg_alt, style = "bold" },
+    ["@title"] = { fg = c.yellow },
+    ["@label"] = { fg = c.blue }, -- For labels: `label:` in C and `:label:` in Lua.
+    --- Text
+    -- TSLiteral = { fg = c.blue3 },
+    ["@text.literal.markdown"] = { fg = c.blue },
+    ["@text.literal"] = { fg = c.blue3 },
+    ["@text.literal.markdown_inline"] = { bg = c.terminal_black, fg = c.blue },
+    ["@text.reference"] = { fg = c.yellow },
+    ["@text.todo.unchecked"] = { fg = c.blue }, -- For brackets and parens.
+    ["@text.todo.checked"] = { fg = c.green },  -- For brackets and parens.
+    ["@text.warning"] = { fg = c.bg, bg = c.warning },
+    ["@text.danger"] = { fg = c.bg, bg = c.error },
+    ["@text.diff.add"] = { link = "DiffAdd" },
+    ["@text.diff.delete"] = { link = "DiffDelete" },
+    ["@namespace"] = { link = "Include" },
+    -- LSP Semantic Token Groups
+    ["@lsp.type.comment"] = { link = "@comment" },
+    ["@lsp.type.enum"] = { link = "@type" },
+    ["@lsp.type.enumMember"] = { link = "@constant" },
+    ["@lsp.type.interface"] = { link = "@type" },
+    ["@lsp.type.keyword"] = { link = "@keyword" },
+    ["@lsp.type.namespace"] = { link = "@namespace" },
+    ["@lsp.type.parameter"] = { link = "@parameter" },
+    ["@lsp.type.property"] = { link = "@property" },
+    ["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
+    ["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
+    ["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
+    ["@lsp.typemod.operator.injected"] = { link = "@operator" },
+    ["@lsp.typemod.string.injected"] = { link = "@string" },
+    ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
+    ["@lsp.typemod.variable.injected"] = { link = "@variable" },
+    --- Identifiers
+    --TSVariable = { fg = c.blue2 },
+    --TSVariableBuiltin = { fg = c.magenta },
+    ["@variable"] = { fg = c.fg },          -- Any variable name that does not have another highlight.
+    ["@variable.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
+    --- Types
+    ["@type"] = { fg = c.yellow },
+    ["@type.qualifier"] = { fg = c.magenta },
+    ["@field"] = { fg = c.blue2 }, -- For fields.
+    ["@property"] = { fg = c.blue2 },
+    --- Keywords
+    --TSKeyword = { fg = c.magenta },
+    ["@keyword"] = { fg = c.purple },           --style = "italic" }, -- For keywords that don't fall in previous categories.
+    --TSKeywordFunction = { fg = c.magenta },
+    ["@keyword.function"] = { fg = c.magenta }, -- For keywords used to define a fuction.
+    --- Functions
+    --TSParameter = { fg = c.blue3 },
+    --TSConstructor = { fg = c.magenta },
+    ["@parameter"] = { fg = c.fg },        -- For parameters of a function.
+    ["@constructor"] = { fg = c.magenta }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+    --- Literals
+    --TSString = { fg = c.green },
+    --TSStringRegex = { fg = c.blue2 },
+    --TSStringEscape = { fg = c.blue2 },
+    ["@string.documentation"] = { fg = c.yellow },
+    ["@string.regex"] = { fg = c.blue2 },    -- For regexes.
+    ["@string.escape"] = { fg = c.magenta }, -- For escape characters within a string.
+    --- Punctuation
+    --TSPunctBracket = { fg = c.grey2 },
+    --TSPunctDelimiter = { fg = c.grey3 },
+    ["@punctuation.delimiter"] = { fg = c.grey2 }, -- For delimiters ie: `.`
+    ["@punctuation.bracket"] = { fg = c.grey3 },   -- For brackets and parens.
+    ["@punctuation.special"] = { fg = c.blue5 },   -- For special punctutation that does not fall in the catagories before.
+    ["@punctuation.special.markdown"] = { fg = c.orange, bold = true },
     -- TreeSitter Markdown
     -- TSTitle
     -- TSLiteral
@@ -435,29 +463,26 @@ function M.apply(opts)
     TSURI = { fg = c.grey },
     TSTextReference = { fg = c.green },
     TSPunctSpecial = { fg = c.purple },
-
     -- Diff highlighting
     GitSignsAdd = { fg = c.green },
     GitSignsDelete = { fg = c.red },
     GitSignsChange = { fg = c.blue2 },
-
     -- Indent-Blank-Lines
     IndentGuide = { fg = c.bg_alt },
-
     -- Octo,nvim
     OctoUserViewer = { bg = c.bg, fg = c.yellow },
     OctoUser = { bg = c.bg_alt, fg = c.blue },
     OctoStateOpen = { fg = c.green },
     OctoGreen = { fg = c.green },
-
+    OctoSignColumn = { fg = c.blue4 },
+    OctoDirty = { fg = c.red },
+    OctoEditable = { fg = c.grey, bg = c.bg_alt },
     -- IndentBlankline
     IndentBlanklineChar = { fg = c.bg_alt, style = "nocombine" },
     IndentBlanklineSpaceChar = { fg = c.red, style = "nocombine" },
     IndentBlanklineSpaceCharBlankline = { fg = c.green, style = "nocombine" },
-
     -- LSP
     LspFloatWinBorder = { fg = c.blue4 },
-
     DiagnosticError = { fg = c.red },
     DiagnosticWarn = { fg = c.orange },
     DiagnosticInfor = { fg = c.blue },
@@ -512,7 +537,6 @@ function M.apply(opts)
     --
     -- DiffView
     DiffviewNormal = { fg = c.grey, bg = c.bg_alt },
-
     -- Nvim
     -- NvimNotificationInfo = { fg = c.yellow, bg = c.bg_alt},
     -- NvimNotificationError = { fg = c.red, bg = c.bg_alt},
@@ -523,7 +547,6 @@ function M.apply(opts)
     NeogitDiffContextHighlight = { fg = c.blue, bg = c.bg_alt },
     NeogitDiffAddHighlight = { fg = c.green, bg = c.bg_alt },
     NeogitDiffDeleteHighlight = { fg = c.red, bg = c.bg_alt },
-
     -- Copilot
     -- CopilotSuggestion = {fg = c.Normal.bg},
 
@@ -536,7 +559,6 @@ function M.apply(opts)
     CmpFloat = { bg = c.bg_alt },
     CmpBorder = { fg = c.bg, bg = c.bg_alt },
     PmenuThumb = { bg = c.grey2 },
-
     -- nvim-cmp kinds
     CmpItemKindFunction = { fg = c.magenta, },
     CmpItemKindMethod = { fg = c.magenta, },
@@ -563,16 +585,12 @@ function M.apply(opts)
     CmpItemKindReference = { fg = c.yellow, },
     CmpItemKindOperator = { fg = c.yellow, },
     CmpItemKindTypeParameter = { fg = c.yellow, },
-
     -- cmp-copilot
     CmpItemKindCopilot = { fg = c.green },
-
-
     -- Mini
     MiniIndentscopeSymbol = { fg = c.blue4, style = "nocombine" },
     MiniCursorword = { fg = c.blue2, style = "nocombine" },
     MiniCursorCurrent = { fg = c.grey, bg = opts.transparent and c.none or c.bg },
-
     -- NeoTree
     NeoTreeNormal = { bg = c.bg_alt },
     NeoTreeNormalNC = { bg = c.bg_alt },
@@ -582,14 +600,11 @@ function M.apply(opts)
     NeoTreeFileName = { fg = c.grey, bg = opts.transparent and c.none or c.bg_alt },
     NeoTreeRootName = { fg = c.yellow },
     NeoTreeCursorLine = { fg = c.yellow },
-
     -- Lualine
     LualineNormal = { fg = c.white, bg = c.blue6 },
-
     -- Winbar
     WinbarFilename = { fg = c.yellow },
     WinbarContext = { fg = c.blue2 },
-
     -- Navic
     NavicText = { fg = c.blue2 },
     NavicSeparator = { fg = c.yellow },
@@ -618,11 +633,9 @@ function M.apply(opts)
     NavicIconsReference = { fg = c.yellow, },
     NavicIconsOperator = { fg = c.yellow, },
     NavicIconsTypeParameter = { fg = c.yellow, },
-
     -- Noice
     NoiceCmdlinePopupBorder = { fg = c.green },
     NoiceVirtualText = { fg = c.orange }
-
   }
 
   return theme
